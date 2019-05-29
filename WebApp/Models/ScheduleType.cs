@@ -6,15 +6,12 @@ using System.Web;
 
 namespace WebApp.Models
 {
-    public class TicketType
+    public class ScheduleType
     {
         public int Id { get; set; }
         [Required]
-        [StringLength(15)]
+        [StringLength(20)]
         public string Name { get; set; }
-        public List<Ticket> Tickets { get; set; }
-
-
-
+        public List<Schedule> Schedules { get; set; }
     }
 }

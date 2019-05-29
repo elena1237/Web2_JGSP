@@ -6,15 +6,14 @@ using System.Web;
 
 namespace WebApp.Models
 {
-    public class TicketType
+    public class PriceList
     {
         public int Id { get; set; }
-        [Required]
-        [StringLength(15)]
-        public string Name { get; set; }
         public List<Ticket> Tickets { get; set; }
-
-
-
+        public ApplicationUser ApplicationUser { get; set; }
+        [Required]
+        [Range(0, 15000)]
+        public float TicketPrice { get; set; }
+        fdfd
     }
 }
