@@ -8,12 +8,11 @@ namespace WebApp.Models
 {
     public class Schedule
     {
-        public int Id { get; set; }
+         public int Id { get; set; }
         [Required]
         public string Departure { get; set; }
         [Required]
-        public string DayInWeek { get; set; }
-        public int ScheduleTypeId { get; set; }
+        public DayOfWeek DayInWeek { get; set; } 
         public ScheduleType ScheduleType { get; set; }
         public int LineId { get; set; }
         public Line Line { get; set; }

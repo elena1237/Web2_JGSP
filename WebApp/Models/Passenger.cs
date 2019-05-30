@@ -6,15 +6,11 @@ using System.Web;
 
 namespace WebApp.Models
 {
-    public class PassengerType
+    public class Passenger : ApplicationUser
     {
         public int Id { get; set; }
-        [Required]
-        public string Name { get; set; }
-
-        public double Discount { get; set; }
-
-        
-
+        public bool Approved { get; set; }
+        public PassengerType PassengerType { get; set; }
+        public string ImageUrl { get; set; }
     }
 }

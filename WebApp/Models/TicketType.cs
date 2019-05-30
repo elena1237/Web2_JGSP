@@ -12,7 +12,9 @@ namespace WebApp.Models
         [Required]
         [StringLength(15)]
         public string Name { get; set; }
-        public List<Ticket> Tickets { get; set; }
+        [Required]
+        [Range(0,15000)]
+        public int Price { get; set; }
 
 
 

@@ -8,11 +8,8 @@ namespace WebApp.Models
 {
     public class Station
     {
-        [Required]
-        public double X { get; set; }
-
-        [Required]
-        public double Y { get; set; }
+        public int Id { get; set; }
+        public Coordinate Coordinate { get; set; }
 
         [Required]
         [StringLength(20)]
@@ -20,7 +17,7 @@ namespace WebApp.Models
 
         [Required]
         [StringLength(40)]
-        public string Adress { get; set; }
+        public string Address { get; set; }
         public List<Line> Lines { get; set; }
 
     }

@@ -6,15 +6,12 @@ using System.Web;
 
 namespace WebApp.Models
 {
-    public class PassengerType
+    public class Coordinate
     {
-        public int Id { get; set; }
         [Required]
-        public string Name { get; set; }
+        public double X { get; set; }
 
-        public double Discount { get; set; }
-
-        
-
+        [Required]
+        public double Y { get; set; }
     }
 }

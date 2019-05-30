@@ -29,18 +29,14 @@ namespace WebApp.Models
         [Required]
         [StringLength(30)]
         public string Address { get; set; }
-
-        [Required]
-        public bool Approved { get; set; }
-        [Required]
-        public string ImageUrl { get; set; }
+       
+        
         [Required]
         [StringLength(30)]
         public string Role { get; set; }
-        public int PassengerTypeId { get; set; }
-        public PassengerType PassengerType { get; set; }
+       
 
-        public List<Ticket> Tickets { get; set; }
+       
 
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)

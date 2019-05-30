@@ -263,8 +263,16 @@
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
+    <Compile Include="Models\Coordinate.cs" />
     <Compile Include="Models\Line.cs" />
+    <Compile Include="Models\Passenger.cs" />
+    <Compile Include="Models\PassengerType.cs" />
+    <Compile Include="Models\PriceList.cs" />
+    <Compile Include="Models\Schedule.cs" />
+    <Compile Include="Models\ScheduleType.cs" />
     <Compile Include="Models\Station.cs" />
+    <Compile Include="Models\Ticket.cs" />
+    <Compile Include="Models\TicketType.cs" />
     <Compile Include="Models\Vehicles.cs" />
     <Compile Include="Persistence\ApplicationDbContext.cs" />
     <Compile Include="Persistence\Repository\IRepository.cs" />
