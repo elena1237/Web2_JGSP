@@ -18,7 +18,6 @@ namespace WebApp.Models
         [Required]
         [StringLength(40)]
         public string Address { get; set; }
-        public List<Line> Lines { get; set; }
 
     }
 }
