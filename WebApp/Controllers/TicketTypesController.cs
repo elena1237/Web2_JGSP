@@ -9,24 +9,29 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using WebApp.Models;
+using WebApp.Persistence.UnitOfWork;
 
 namespace WebApp.Controllers
 {
     public class TicketTypesController : ApiController
     {
-        private WebAppContext db = new WebAppContext();
+        private IUnitOfWork db;
 
-        // GET: api/TicketTypes
-        public IQueryable<TicketType> GetTicketTypes()
+        public TicketTypesController(IUnitOfWork db)
         {
-            return db.TicketTypes;
+            this.db = db;
+        }
+        // GET: api/TicketTypes
+        public IEnumerable<TicketType> GetTicketTypes()
+        {
+            return db.TicketTypes.GetAll();
         }
 
         // GET: api/TicketTypes/5
         [ResponseType(typeof(TicketType))]
         public IHttpActionResult GetTicketType(int id)
         {
-            TicketType ticketType = db.TicketTypes.Find(id);
+            TicketType ticketType = db.TicketTypes.Get(id);
             if (ticketType == null)
             {
                 return NotFound();
@@ -49,11 +54,11 @@ namespace WebApp.Controllers
                 return BadRequest();
             }
 
-            db.Entry(ticketType).State = EntityState.Modified;
+            db.TicketTypes.Update(ticketType);
 
             try
             {
-                db.SaveChanges();
+                db.Complete();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -80,7 +85,7 @@ namespace WebApp.Controllers
             }
 
             db.TicketTypes.Add(ticketType);
-            db.SaveChanges();
+            db.Complete();
 
             return CreatedAtRoute("DefaultApi", new { id = ticketType.Id }, ticketType);
         }
@@ -89,14 +94,14 @@ namespace WebApp.Controllers
         [ResponseType(typeof(TicketType))]
         public IHttpActionResult DeleteTicketType(int id)
         {
-            TicketType ticketType = db.TicketTypes.Find(id);
+            TicketType ticketType = db.TicketTypes.Get(id);
             if (ticketType == null)
             {
                 return NotFound();
             }
 
             db.TicketTypes.Remove(ticketType);
-            db.SaveChanges();
+            db.Complete();
 
             return Ok(ticketType);
         }
@@ -112,7 +117,7 @@ namespace WebApp.Controllers
 
         private bool TicketTypeExists(int id)
         {
-            return db.TicketTypes.Count(e => e.Id == id) > 0;
+            return db.TicketTypes.GetAll().Count(e => e.Id == id) > 0;
         }
     }
 }

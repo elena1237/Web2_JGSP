@@ -9,24 +9,30 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using WebApp.Models;
+using WebApp.Persistence.UnitOfWork;
 
 namespace WebApp.Controllers
 {
     public class ScheduleTypesController : ApiController
     {
-        private WebAppContext db = new WebAppContext();
+        public IUnitOfWork db { get; set; }
+
+        public ScheduleTypesController(IUnitOfWork db)
+        {
+            this.db = db;
+        }
 
         // GET: api/ScheduleTypes
-        public IQueryable<ScheduleType> GetScheduleTypes()
+        public IEnumerable<ScheduleType> GetScheduleTypes()
         {
-            return db.ScheduleTypes;
+            return db.ScheduleTypes.GetAll();
         }
 
         // GET: api/ScheduleTypes/5
         [ResponseType(typeof(ScheduleType))]
         public IHttpActionResult GetScheduleType(int id)
         {
-            ScheduleType scheduleType = db.ScheduleTypes.Find(id);
+            ScheduleType scheduleType = db.ScheduleTypes.Get(id);
             if (scheduleType == null)
             {
                 return NotFound();
@@ -49,11 +55,11 @@ namespace WebApp.Controllers
                 return BadRequest();
             }
 
-            db.Entry(scheduleType).State = EntityState.Modified;
+            db.ScheduleTypes.Update(scheduleType);
 
             try
             {
-                db.SaveChanges();
+                db.Complete();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -80,7 +86,7 @@ namespace WebApp.Controllers
             }
 
             db.ScheduleTypes.Add(scheduleType);
-            db.SaveChanges();
+            db.Complete();
 
             return CreatedAtRoute("DefaultApi", new { id = scheduleType.Id }, scheduleType);
         }
@@ -89,14 +95,14 @@ namespace WebApp.Controllers
         [ResponseType(typeof(ScheduleType))]
         public IHttpActionResult DeleteScheduleType(int id)
         {
-            ScheduleType scheduleType = db.ScheduleTypes.Find(id);
+            ScheduleType scheduleType = db.ScheduleTypes.Get(id);
             if (scheduleType == null)
             {
                 return NotFound();
             }
 
             db.ScheduleTypes.Remove(scheduleType);
-            db.SaveChanges();
+            db.Complete();
 
             return Ok(scheduleType);
         }
@@ -112,7 +118,7 @@ namespace WebApp.Controllers
 
         private bool ScheduleTypeExists(int id)
         {
-            return db.ScheduleTypes.Count(e => e.Id == id) > 0;
+            return db.ScheduleTypes.GetAll().Count(e => e.Id == id) > 0;
         }
     }
 }

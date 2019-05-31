@@ -296,3 +296,4 @@ C:\Users\user\Desktop\Web2_JGSP\WebApp\obj\Debug\WebApp.Migrations.Initial.resou
 C:\Users\user\Desktop\Web2_JGSP\WebApp\obj\Debug\WebApp.csproj.GenerateResource.Cache
 C:\Users\user\Desktop\Web2_JGSP\WebApp\obj\Debug\WebApp.Migrations.Line_Ticket_Station.resources
 C:\Users\user\Desktop\Web2_JGSP\WebApp\obj\Debug\WebApp.Migrations.Other_else.resources
+C:\Users\user\Desktop\Web2_JGSP\WebApp\obj\Debug\WebApp.Migrations.AppUser.resources

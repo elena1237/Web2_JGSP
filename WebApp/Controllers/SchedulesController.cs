@@ -9,24 +9,34 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using WebApp.Models;
+using WebApp.Persistence.Repository;
+using WebApp.Persistence.UnitOfWork;
 
 namespace WebApp.Controllers
 {
     public class SchedulesController : ApiController
     {
-        private WebAppContext db = new WebAppContext();
 
-        // GET: api/Schedules
-        public IQueryable<Schedule> GetSchedules()
+        public IUnitOfWork _unitOfWork { get; set; }
+
+        public SchedulesController(IUnitOfWork unitOfWork)
         {
-            return db.Schedules;
+            this._unitOfWork = unitOfWork;
+        }
+
+        [Authorize(Roles = "Admin")]
+        // GET: api/Schedules
+        public IEnumerable<Schedule> GetSchedules()
+        {
+            return _unitOfWork.Schedules.GetAll();
+    
         }
 
         // GET: api/Schedules/5
         [ResponseType(typeof(Schedule))]
         public IHttpActionResult GetSchedule(int id)
         {
-            Schedule schedule = db.Schedules.Find(id);
+            Schedule schedule = _unitOfWork.Schedules.Get(id);
             if (schedule == null)
             {
                 return NotFound();
@@ -49,11 +59,11 @@ namespace WebApp.Controllers
                 return BadRequest();
             }
 
-            db.Entry(schedule).State = EntityState.Modified;
+            _unitOfWork.Schedules.Update(schedule);
 
             try
             {
-                db.SaveChanges();
+                _unitOfWork.Complete();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -79,8 +89,8 @@ namespace WebApp.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Schedules.Add(schedule);
-            db.SaveChanges();
+            _unitOfWork.Schedules.Add(schedule);
+            _unitOfWork.Complete();
 
             return CreatedAtRoute("DefaultApi", new { id = schedule.Id }, schedule);
         }
@@ -89,14 +99,14 @@ namespace WebApp.Controllers
         [ResponseType(typeof(Schedule))]
         public IHttpActionResult DeleteSchedule(int id)
         {
-            Schedule schedule = db.Schedules.Find(id);
+            Schedule schedule = _unitOfWork.Schedules.Get(id);
             if (schedule == null)
             {
                 return NotFound();
             }
 
-            db.Schedules.Remove(schedule);
-            db.SaveChanges();
+            _unitOfWork.Schedules.Remove(schedule);
+            _unitOfWork.Complete();
 
             return Ok(schedule);
         }
@@ -105,14 +115,14 @@ namespace WebApp.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _unitOfWork.Dispose();
             }
             base.Dispose(disposing);
         }
 
         private bool ScheduleExists(int id)
         {
-            return db.Schedules.Count(e => e.Id == id) > 0;
+            return _unitOfWork.Schedules.GetAll().Count(e => e.Id == id) > 0;
         }
     }
 }

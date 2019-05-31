@@ -10,24 +10,30 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using WebApp.Models;
+using WebApp.Persistence.Repository;
+using WebApp.Persistence.UnitOfWork;
 
 namespace WebApp.Controllers
 {
     public class LinesController : ApiController
     {
-        private WebAppContext db = new WebAppContext();
+        private IUnitOfWork db;
 
-        // GET: api/Lines
-        public IQueryable<Line> GetLines()
+        public LinesController(IUnitOfWork db)
         {
-            return db.Lines;
+            this.db = db;
+        }
+        // GET: api/Lines
+        public IEnumerable<Line> GetLines()
+        {
+            return db.Lines.GetAll();
         }
 
         // GET: api/Lines/5
         [ResponseType(typeof(Line))]
-        public async Task<IHttpActionResult> GetLine(int id)
+        public IHttpActionResult GetLine(int id)
         {
-            Line line = await db.Lines.FindAsync(id);
+            Line line = db.Lines.Get(id);
             if (line == null)
             {
                 return NotFound();
@@ -38,7 +44,7 @@ namespace WebApp.Controllers
 
         // PUT: api/Lines/5
         [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutLine(int id, Line line)
+        public IHttpActionResult PutLine(int id, Line line)
         {
             if (!ModelState.IsValid)
             {
@@ -50,11 +56,11 @@ namespace WebApp.Controllers
                 return BadRequest();
             }
 
-            db.Entry(line).State = EntityState.Modified;
+            db.Lines.Update(line);
 
             try
             {
-                await db.SaveChangesAsync();
+                db.Complete();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -73,7 +79,7 @@ namespace WebApp.Controllers
 
         // POST: api/Lines
         [ResponseType(typeof(Line))]
-        public async Task<IHttpActionResult> PostLine(Line line)
+        public IHttpActionResult PostLine(Line line)
         {
             if (!ModelState.IsValid)
             {
@@ -81,23 +87,23 @@ namespace WebApp.Controllers
             }
 
             db.Lines.Add(line);
-            await db.SaveChangesAsync();
+            db.Complete();
 
             return CreatedAtRoute("DefaultApi", new { id = line.Id }, line);
         }
 
         // DELETE: api/Lines/5
         [ResponseType(typeof(Line))]
-        public async Task<IHttpActionResult> DeleteLine(int id)
+        public IHttpActionResult DeleteLine(int id)
         {
-            Line line = await db.Lines.FindAsync(id);
+            Line line = db.Lines.Get(id);
             if (line == null)
             {
                 return NotFound();
             }
 
             db.Lines.Remove(line);
-            await db.SaveChangesAsync();
+            db.Complete();
 
             return Ok(line);
         }
@@ -113,7 +119,7 @@ namespace WebApp.Controllers
 
         private bool LineExists(int id)
         {
-            return db.Lines.Count(e => e.Id == id) > 0;
+            return db.Lines.GetAll().Count(e => e.Id == id) > 0;
         }
     }
 }

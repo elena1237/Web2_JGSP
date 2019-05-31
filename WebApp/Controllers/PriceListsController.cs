@@ -9,24 +9,29 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using WebApp.Models;
+using WebApp.Persistence.UnitOfWork;
 
 namespace WebApp.Controllers
 {
     public class PriceListsController : ApiController
     {
-        private WebAppContext db = new WebAppContext();
+        private IUnitOfWork db;
 
-        // GET: api/PriceLists
-        public IQueryable<PriceList> GetPriceLists()
+        public PriceListsController(IUnitOfWork db)
         {
-            return db.PriceLists;
+            this.db = db;
+        }
+        // GET: api/PriceLists
+        public IEnumerable<PriceList> GetPriceLists()
+        {
+            return db.PriceLists.GetAll();
         }
 
         // GET: api/PriceLists/5
         [ResponseType(typeof(PriceList))]
         public IHttpActionResult GetPriceList(int id)
         {
-            PriceList priceList = db.PriceLists.Find(id);
+            PriceList priceList = db.PriceLists.Get(id);
             if (priceList == null)
             {
                 return NotFound();
@@ -49,11 +54,11 @@ namespace WebApp.Controllers
                 return BadRequest();
             }
 
-            db.Entry(priceList).State = EntityState.Modified;
+            db.PriceLists.Update(priceList);
 
             try
             {
-                db.SaveChanges();
+                db.Complete();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -80,7 +85,7 @@ namespace WebApp.Controllers
             }
 
             db.PriceLists.Add(priceList);
-            db.SaveChanges();
+            db.Complete();
 
             return CreatedAtRoute("DefaultApi", new { id = priceList.Id }, priceList);
         }
@@ -89,14 +94,14 @@ namespace WebApp.Controllers
         [ResponseType(typeof(PriceList))]
         public IHttpActionResult DeletePriceList(int id)
         {
-            PriceList priceList = db.PriceLists.Find(id);
+            PriceList priceList = db.PriceLists.Get(id);
             if (priceList == null)
             {
                 return NotFound();
             }
 
             db.PriceLists.Remove(priceList);
-            db.SaveChanges();
+            db.Complete();
 
             return Ok(priceList);
         }
@@ -112,7 +117,7 @@ namespace WebApp.Controllers
 
         private bool PriceListExists(int id)
         {
-            return db.PriceLists.Count(e => e.Id == id) > 0;
+            return db.PriceLists.GetAll().Count(e => e.Id == id) > 0;
         }
     }
 }

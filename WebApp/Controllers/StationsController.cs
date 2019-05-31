@@ -9,24 +9,29 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using WebApp.Models;
+using WebApp.Persistence.UnitOfWork;
 
 namespace WebApp.Controllers
 {
     public class StationsController : ApiController
     {
-        private WebAppContext db = new WebAppContext();
+        public IUnitOfWork db { get; set; }
 
-        // GET: api/Stations
-        public IQueryable<Station> GetStations()
+        public StationsController(IUnitOfWork db)
         {
-            return db.Stations;
+            this.db = db;
+        }
+        // GET: api/Stations
+        public IEnumerable<Station> GetStations()
+        {
+            return db.Stations.GetAll();
         }
 
         // GET: api/Stations/5
         [ResponseType(typeof(Station))]
         public IHttpActionResult GetStation(int id)
         {
-            Station station = db.Stations.Find(id);
+            Station station = db.Stations.Get(id);
             if (station == null)
             {
                 return NotFound();
@@ -49,11 +54,11 @@ namespace WebApp.Controllers
                 return BadRequest();
             }
 
-            db.Entry(station).State = EntityState.Modified;
+            db.Stations.Update(station);
 
             try
             {
-                db.SaveChanges();
+                db.Complete();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -80,7 +85,7 @@ namespace WebApp.Controllers
             }
 
             db.Stations.Add(station);
-            db.SaveChanges();
+            db.Complete();
 
             return CreatedAtRoute("DefaultApi", new { id = station.Id }, station);
         }
@@ -89,14 +94,14 @@ namespace WebApp.Controllers
         [ResponseType(typeof(Station))]
         public IHttpActionResult DeleteStation(int id)
         {
-            Station station = db.Stations.Find(id);
+            Station station = db.Stations.Get(id);
             if (station == null)
             {
                 return NotFound();
             }
 
             db.Stations.Remove(station);
-            db.SaveChanges();
+            db.Complete();
 
             return Ok(station);
         }
@@ -112,7 +117,7 @@ namespace WebApp.Controllers
 
         private bool StationExists(int id)
         {
-            return db.Stations.Count(e => e.Id == id) > 0;
+            return db.Stations.GetAll().Count(e => e.Id == id) > 0;
         }
     }
 }

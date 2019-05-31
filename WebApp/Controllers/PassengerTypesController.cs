@@ -9,24 +9,29 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using WebApp.Models;
+using WebApp.Persistence.UnitOfWork;
 
 namespace WebApp.Controllers
 {
     public class PassengerTypesController : ApiController
     {
-        private WebAppContext db = new WebAppContext();
+        private IUnitOfWork db;
 
-        // GET: api/PassengerTypes
-        public IQueryable<PassengerType> GetPassengerTypes()
+        public PassengerTypesController(IUnitOfWork db)
         {
-            return db.PassengerTypes;
+            this.db = db;
+        }
+        // GET: api/PassengerTypes
+        public IEnumerable<PassengerType> GetPassengerTypes()
+        {
+            return db.PassengerTypes.GetAll();
         }
 
         // GET: api/PassengerTypes/5
         [ResponseType(typeof(PassengerType))]
         public IHttpActionResult GetPassengerType(int id)
         {
-            PassengerType passengerType = db.PassengerTypes.Find(id);
+            PassengerType passengerType = db.PassengerTypes.Get(id);
             if (passengerType == null)
             {
                 return NotFound();
@@ -49,11 +54,11 @@ namespace WebApp.Controllers
                 return BadRequest();
             }
 
-            db.Entry(passengerType).State = EntityState.Modified;
+            db.PassengerTypes.Update(passengerType);
 
             try
             {
-                db.SaveChanges();
+                db.Complete();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -80,7 +85,7 @@ namespace WebApp.Controllers
             }
 
             db.PassengerTypes.Add(passengerType);
-            db.SaveChanges();
+            db.Complete();
 
             return CreatedAtRoute("DefaultApi", new { id = passengerType.Id }, passengerType);
         }
@@ -89,14 +94,14 @@ namespace WebApp.Controllers
         [ResponseType(typeof(PassengerType))]
         public IHttpActionResult DeletePassengerType(int id)
         {
-            PassengerType passengerType = db.PassengerTypes.Find(id);
+            PassengerType passengerType = db.PassengerTypes.Get(id);
             if (passengerType == null)
             {
                 return NotFound();
             }
 
             db.PassengerTypes.Remove(passengerType);
-            db.SaveChanges();
+            db.Complete();
 
             return Ok(passengerType);
         }
@@ -112,7 +117,7 @@ namespace WebApp.Controllers
 
         private bool PassengerTypeExists(int id)
         {
-            return db.PassengerTypes.Count(e => e.Id == id) > 0;
+            return db.PassengerTypes.GetAll().Count(e => e.Id == id) > 0;
         }
     }
 }

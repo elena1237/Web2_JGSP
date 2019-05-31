@@ -8,7 +8,7 @@ namespace WebApp.Models
 {
     public class Passenger : ApplicationUser
     {
-        public int Id { get; set; }
+        //public int Id { get; set; }
         public bool Approved { get; set; }
         public PassengerType PassengerType { get; set; }
         public string ImageUrl { get; set; }
