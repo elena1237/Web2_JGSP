@@ -1,0 +1,44 @@
+<div>
+  <h3> Kupovina vremenske karte</h3>
+    <a href="#success" data-toggle="collapse">
+    <button type="submit" class="btn btn-primary">Kupi</button>
+    </a>
+    <div id="success" class="collapse">
+      <p>Vasa karta vazi narednih sat vremena</p>
+    </div>
+  </div>
+  <div class="container">  
+  
+    
+        <div align="center" style="color:white;text-align: right;">  
+          CRUD operation in Angular 7 using Web api and Sql Database  
+        </div>    
+    
+    <br><br>  
+
+        <form [formGroup]="employeeForm"(ngSubmit)="onFormSubmit(employeeForm.value)">  
+                <table>  
+                  <tr>  
+                    <td class="tbl1">  
+                   
+                        <input formControlName="TimeIssued" matTooltip="Enter Time" matInput placeholder="Date and Time">  
+                      
+                      
+                        <span *ngIf="!employeeForm.get('TimeIssued').value && employeeForm.get('TimeIssued').touched"></span>  
+                      
+                    </td>  
+                    
+                    <td  class="content-center">  
+                      <button type="submit" mat-raised-button color="accent"matTooltip="Click Submit Button"[disabled]="!employeeForm.valid">Submit</button>      
+                      <button type="reset" mat-raised-button color="accent"matTooltip="Click Reset Button" (click)="resetForm()">Reset</button>  
+                    </td>  
+                    <td>  
+                      <p *ngIf="dataSaved" style="color:rgb(0, 128, 0);font-size:20px;font-weight:bold" Class="success" align="left">  
+                        {{massage}}  
+                      </p>  
+                    </td>  
+                  </tr>  
+                </table>  
+        </form>  
+     
+    </div>  
