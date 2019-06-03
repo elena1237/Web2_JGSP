@@ -265,21 +265,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201905301837289_Initial.cs" />
-    <Compile Include="Migrations\201905301837289_Initial.Designer.cs">
-      <DependentUpon>201905301837289_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905301853268_Line_Ticket_Station.cs" />
-    <Compile Include="Migrations\201905301853268_Line_Ticket_Station.Designer.cs">
-      <DependentUpon>201905301853268_Line_Ticket_Station.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905301858106_Other_else.cs" />
-    <Compile Include="Migrations\201905301858106_Other_else.Designer.cs">
-      <DependentUpon>201905301858106_Other_else.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905311118466_AppUser.cs" />
-    <Compile Include="Migrations\201905311118466_AppUser.Designer.cs">
-      <DependentUpon>201905311118466_AppUser.cs</DependentUpon>
+    <Compile Include="Migrations\201906031915544_InicijalnaMigracija.cs" />
+    <Compile Include="Migrations\201906031915544_InicijalnaMigracija.Designer.cs">
+      <DependentUpon>201906031915544_InicijalnaMigracija.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -420,17 +408,8 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201905301837289_Initial.resx">
-      <DependentUpon>201905301837289_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905301853268_Line_Ticket_Station.resx">
-      <DependentUpon>201905301853268_Line_Ticket_Station.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905301858106_Other_else.resx">
-      <DependentUpon>201905301858106_Other_else.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905311118466_AppUser.resx">
-      <DependentUpon>201905311118466_AppUser.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201906031915544_InicijalnaMigracija.resx">
+      <DependentUpon>201906031915544_InicijalnaMigracija.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

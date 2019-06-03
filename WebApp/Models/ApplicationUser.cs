@@ -17,7 +17,7 @@ namespace WebApp.Models
     {
         [Required]
         [StringLength(15)]
-        public string FirstName { get; set;}
+        public string FirstName { get; set; }
 
         [Required]
         [StringLength(15)]
@@ -29,14 +29,14 @@ namespace WebApp.Models
         [Required]
         [StringLength(30)]
         public string Address { get; set; }
-       
-        
+
+
         [Required]
         [StringLength(30)]
         public string Role { get; set; }
-       
 
-       
+
+
 
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)

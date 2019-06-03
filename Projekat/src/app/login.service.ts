@@ -19,7 +19,7 @@ export class LoginService {
     return this.http.post<any>(this.loginUrl, `username=`+ user.username +`&password=`+ user.password + `&grant_type=password`, { 'headers': { 'Content-type': 'x-www-form-urlencoded' } }).pipe(
       map(res => {
         console.log(res.access_token);
-
+        this.isLoggedIn=true;
         let jwt = res.access_token;
 
         let jwtData = jwt.split('.')[1]

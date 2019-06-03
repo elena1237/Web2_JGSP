@@ -24,11 +24,12 @@ export class LoginComponent {
   }
 
   setMessage() {
-    this.message = 'Logged ' + (this.authService.isLoggedIn ? 'in' : 'out');
+    this.message = 'Logged ' + (this.authService.isLoggedIn ? 'in' : 'out - make you profile');
   }
 
   login() {
     this.authService.login(this.loginForm.value).subscribe((data) => {
+      this.setMessage();
       console.log(data);
     });
   }

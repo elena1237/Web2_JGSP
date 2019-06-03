@@ -22,7 +22,7 @@ namespace WebApp.Persistence
         public DbSet<TicketType> TicketType { get; set; }
         public DbSet<Vehicles> Vehicless { get; set; }
         public DbSet<Schedule> Schedules { get; set; }
-
+  
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
