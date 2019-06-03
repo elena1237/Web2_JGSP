@@ -1,0 +1,46 @@
+<app-header></app-header>
+<div class="jumbotron" style="background-color: #fff; height: calc(150vh);">
+ 
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+      <div class="item active">
+        <img src="assets/images/walp2.jpg" alt="city"/>
+        <div class="carousel-caption">
+          <h1>JAVNO GRADSKO SAOBRAĆAJNO PREDUZEĆE</h1>
+        </div> 
+      </div>
+     
+  </div>
+  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+     
+      </ol>
+      <div class="row">
+          <div class="col-sm-4">
+            <p class="text-center"><strong>Red voznje</strong></p><br>
+            <a routerLink="/schedule" data-toggle="collapse">
+              <img src="assets/images/bus.jpg" height="200px" width="200px" class="img-circle person" alt="Random Name">
+            </a>
+          </div>
+          <div class="col-sm-4">
+            <p class="text-center"><strong>Kupi kartu</strong></p><br>
+            <a routerLink="/buyTicket" data-toggle="collapse">
+              <img src="assets/images/ticket.png" class="img-circle person" alt="Random Name">
+            </a>
+          </div>
+          <div class="col-sm-4">
+            <p class="text-center"><strong>Cenovnik</strong></p><br>
+            <a routerLink="/priceList" data-toggle="collapse">
+              <img src="assets/images/priceList.png" height="200px" width="200px" class="img-circle person" alt="Random Name">
+            </a>
+           
+          </div>
+        </div>
+</div>
+<app-footer></app-footer>
+  
+<router-outlet></router-outlet>
+
+

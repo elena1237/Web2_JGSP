@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Web.Http;
 using Microsoft.AspNet.SignalR;
 using Microsoft.Owin.Security.OAuth;
+using System.Web.Http.Cors;
 using Newtonsoft.Json.Serialization;
 using Unity;
 using Unity.Lifetime;
@@ -22,7 +23,8 @@ namespace WebApp
             config.DependencyResolver = resolver;
 
             GlobalHost.DependencyResolver = new SignalRUnityDependencyResolver(container);
-
+            var cors = new EnableCorsAttribute("*", "*", "*");
+            config.EnableCors(cors);
             // Web API configuration and services
             // Configure Web API to use only bearer token authentication.
             config.SuppressDefaultHostAuthentication();

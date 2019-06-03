@@ -11,6 +11,7 @@ using WebApp.Persistence.UnitOfWork;
 
 namespace WebApp.Controllers
 {
+    [RoutePrefix("Api/ticket")]
     public class TicketsController : ApiController
     {
       
@@ -21,12 +22,16 @@ namespace WebApp.Controllers
                 this.db = db;
             }
 
-            // GET: api/Tickets
-            public IEnumerable<Ticket> GetTickets()
+        // GET: api/Tickets
+        [HttpGet]
+        [Route("AllTicket")]
+        public IEnumerable<Ticket> GetTickets()
             {
                 return db.Tickets.GetAll();
             }
-
+        
+        [HttpGet]
+        [Route("GetById")]
             // GET: api/Tickets/5
             [ResponseType(typeof(Ticket))]
             public IHttpActionResult GetTicket(int id)
@@ -40,8 +45,10 @@ namespace WebApp.Controllers
                 return Ok(ticket);
             }
 
-            // PUT: api/Tickets/5
-            [ResponseType(typeof(void))]
+        // PUT: api/Tickets/5
+        [HttpPut]
+        [Route("UpdateTicket")]
+        [ResponseType(typeof(void))]
             public IHttpActionResult PutTicket(int id, Ticket ticket)
             {
                 if (!ModelState.IsValid)
@@ -75,8 +82,10 @@ namespace WebApp.Controllers
                 return StatusCode(HttpStatusCode.NoContent);
             }
 
-            // POST: api/Tickets
-            [ResponseType(typeof(Ticket))]
+        // POST: api/Tickets
+        [HttpPost]
+        [Route("InsertTicket")]
+        [ResponseType(typeof(Ticket))]
             public IHttpActionResult PostTicket(Ticket ticket)
             {
                 if (!ModelState.IsValid)
@@ -90,8 +99,10 @@ namespace WebApp.Controllers
                 return CreatedAtRoute("DefaultApi", new { id = ticket.Id }, ticket);
             }
 
-            // DELETE: api/Tickets/5
-            [ResponseType(typeof(Ticket))]
+        [HttpDelete]
+        [Route("DeleteTicket")]
+        // DELETE: api/Tickets/5
+        [ResponseType(typeof(Ticket))]
             public IHttpActionResult DeleteTicket(int id)
             {
                 Ticket ticket = db.Tickets.Get(id);
