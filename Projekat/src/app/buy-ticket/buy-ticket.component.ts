@@ -11,20 +11,31 @@ import { Ticket } from '../ticket';
 })
 export class BuyTicketComponent implements OnInit {
 
-  // dataSaved = false;  
+   
   // employeeForm: any;  
+  
   // allEmployees: Observable<Ticket[]>;  
   // employeeIdUpdate = null;  
   // massage = null;  
   
-  // constructor(private formbulider: FormBuilder, private employeeService:BuyticketService) { }  
+  constructor(private buyTicketService:BuyticketService) { }  
   
   ngOnInit() {  
     // this.employeeForm = this.formbulider.group({  
     //   TimeIssued:
-    };  
+  } 
     // this.loadAllEmployees();  
+  createTicket(ticket: Ticket) { 
+
+        this.buyTicketService.createTicketNotRegisteredUser().subscribe(  
+          () => {  
+            
+          }  
+        );  
+      }        
   }  
+  
+  
 //   loadAllEmployees() {  
 //     this.allEmployees = this.employeeService.getAllEmployee();  
 //   }  
@@ -34,20 +45,9 @@ export class BuyTicketComponent implements OnInit {
 //     this.CreateEmployee(employee);  
 //     this.employeeForm.reset();  
 //   }  
-//   loadEmployeeToEdit(employeeId: string) {  
-//     this.employeeService.getEmployeeById(employeeId).subscribe(employee=> {  
-//       this.massage = null;  
-//       this.dataSaved = false;  
-//       this.employeeIdUpdate = employee.EmpId;  
-//       this.employeeForm.controls['EmpName'].setValue(employee.EmpName);  
-//      this.employeeForm.controls['DateOfBirth'].setValue(employee.DateOfBirth);  
-//       this.employeeForm.controls['EmailId'].setValue(employee.EmailId);  
-//       this.employeeForm.controls['Gender'].setValue(employee.Gender);  
-//       this.employeeForm.controls['Address'].setValue(employee.Address);  
-//       this.employeeForm.controls['PinCode'].setValue(employee.PinCode);  
-//     });  
+//     
   
-//   }  
+//     
 //   CreateEmployee(employee: Employee) {  
 //     if (this.employeeIdUpdate == null) {  
 //       this.employeeService.createEmployee(employee).subscribe(  
@@ -70,16 +70,7 @@ export class BuyTicketComponent implements OnInit {
 //       });  
 //     }  
 //   }   
-//   deleteEmployee(employeeId: string) {  
-//     if (confirm("Are you sure you want to delete this ?")) {   
-//     this.employeeService.deleteEmployeeById(employeeId).subscribe(() => {  
-//       this.dataSaved = true;  
-//       this.massage = 'Record Deleted Succefully';  
-//       this.loadAllEmployees();  
-//       this.employeeIdUpdate = null;  
-//       this.employeeForm.reset();  
-  
-//     });  
+//    
 //   }  
 // }  
 //   resetForm() {  

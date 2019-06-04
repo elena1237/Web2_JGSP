@@ -265,9 +265,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201906031915544_InicijalnaMigracija.cs" />
-    <Compile Include="Migrations\201906031915544_InicijalnaMigracija.Designer.cs">
-      <DependentUpon>201906031915544_InicijalnaMigracija.cs</DependentUpon>
+    <Compile Include="Migrations\201906041046487_InicijalnaMigracijaAjde.cs" />
+    <Compile Include="Migrations\201906041046487_InicijalnaMigracijaAjde.Designer.cs">
+      <DependentUpon>201906041046487_InicijalnaMigracijaAjde.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906041057261_test.cs" />
+    <Compile Include="Migrations\201906041057261_test.Designer.cs">
+      <DependentUpon>201906041057261_test.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -283,6 +287,7 @@
     <Compile Include="Models\Station.cs" />
     <Compile Include="Models\Ticket.cs" />
     <Compile Include="Models\TicketType.cs" />
+    <Compile Include="Models\BaseTicket.cs" />
     <Compile Include="Models\Vehicles.cs" />
     <Compile Include="Models\WebAppContext.cs" />
     <Compile Include="Persistence\ApplicationDbContext.cs" />
@@ -408,8 +413,11 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201906031915544_InicijalnaMigracija.resx">
-      <DependentUpon>201906031915544_InicijalnaMigracija.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201906041046487_InicijalnaMigracijaAjde.resx">
+      <DependentUpon>201906041046487_InicijalnaMigracijaAjde.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906041057261_test.resx">
+      <DependentUpon>201906041057261_test.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

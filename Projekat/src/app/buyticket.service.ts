@@ -17,6 +17,11 @@ export class BuyticketService {
   getTicketById(employeeId: string): Observable<Ticket> {  
     return this.http.get<Ticket>(this.url + '/GetById/' + employeeId);  
   }  
+  createTicketNotRegisteredUser(): Observable<Ticket> {  
+    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json'}) };  
+    return this.http.post<Ticket>(this.url + '/InsertTimeTicket/',  
+    httpOptions);  
+  }  
   createTicket(employee: Ticket): Observable<Ticket> {  
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json'}) };  
     return this.http.post<Ticket>(this.url + '/InsertTicket/',  

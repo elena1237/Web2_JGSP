@@ -6,17 +6,27 @@ using System.Web;
 
 namespace WebApp.Models
 {
-    public class Ticket
+    public class Ticket : BaseTicket
     {
-        public int Id { get; set; }
+       
         public TicketType TicketType { get; set; }
 
         public Passenger Passenger { get; set; }
-        public bool IsValid { get; set; }
-        [Required]
-        [StringLength(20)]
-        public string TimeIssued { get; set; }
+        
 
 
+        public Ticket()
+        {
+
+        }
+
+        public Ticket(TicketType tt,Passenger p, bool iv, string ti)
+        {
+            TicketType = tt;
+            Passenger = p;
+            IsValid = iv;
+            TimeIssued = ti;
+        }
+           
     }
 }

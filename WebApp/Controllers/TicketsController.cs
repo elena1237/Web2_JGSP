@@ -25,7 +25,7 @@ namespace WebApp.Controllers
         // GET: api/Tickets
         [HttpGet]
         [Route("AllTicket")]
-        public IEnumerable<Ticket> GetTickets()
+        public IEnumerable<BaseTicket> GetTickets()
             {
                 return db.Tickets.GetAll();
             }
@@ -33,10 +33,10 @@ namespace WebApp.Controllers
         [HttpGet]
         [Route("GetById")]
             // GET: api/Tickets/5
-            [ResponseType(typeof(Ticket))]
+            [ResponseType(typeof(BaseTicket))]
             public IHttpActionResult GetTicket(int id)
             {
-                Ticket ticket = db.Tickets.Get(id);
+                BaseTicket ticket = db.Tickets.Get(id);
                 if (ticket == null)
                 {
                     return NotFound();
@@ -49,7 +49,7 @@ namespace WebApp.Controllers
         [HttpPut]
         [Route("UpdateTicket")]
         [ResponseType(typeof(void))]
-            public IHttpActionResult PutTicket(int id, Ticket ticket)
+            public IHttpActionResult PutTicket(int id, BaseTicket ticket)
             {
                 if (!ModelState.IsValid)
                 {
@@ -85,8 +85,8 @@ namespace WebApp.Controllers
         // POST: api/Tickets
         [HttpPost]
         [Route("InsertTicket")]
-        [ResponseType(typeof(Ticket))]
-            public IHttpActionResult PostTicket(Ticket ticket)
+        [ResponseType(typeof(BaseTicket))]
+            public IHttpActionResult PostTicket(BaseTicket ticket)
             {
                 if (!ModelState.IsValid)
                 {
@@ -99,13 +99,40 @@ namespace WebApp.Controllers
                 return CreatedAtRoute("DefaultApi", new { id = ticket.Id }, ticket);
             }
 
+
+        // POST: api/Tickets
+        [HttpPost]
+        [Route("InsertTimeTicket")]
+        [ResponseType(typeof(BaseTicket))]
+        public IHttpActionResult PostTimeTicket()
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+
+            //PassengerType pt = new PassengerType();
+            //Passenger pass = new Passenger("UserFirst", "UserLast", "Address", "Role", "10.05.1994.", false,pt,"img","UserName",false,"user@gmail.com");
+            //TicketType tt = new TicketType();
+            BaseTicket timeticket = new BaseTicket();
+            timeticket.IsValid = true;
+            timeticket.TimeIssued = (DateTime.Now).ToString();
+
+
+            db.Tickets.Add(timeticket);
+            db.Complete();
+
+            return CreatedAtRoute("DefaultApi", new { id = timeticket.Id }, timeticket);
+        }
+
         [HttpDelete]
         [Route("DeleteTicket")]
         // DELETE: api/Tickets/5
-        [ResponseType(typeof(Ticket))]
+        [ResponseType(typeof(BaseTicket))]
             public IHttpActionResult DeleteTicket(int id)
             {
-                Ticket ticket = db.Tickets.Get(id);
+                BaseTicket ticket = db.Tickets.Get(id);
                 if (ticket == null)
                 {
                     return NotFound();

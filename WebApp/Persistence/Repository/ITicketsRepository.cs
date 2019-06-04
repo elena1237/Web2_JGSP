@@ -8,7 +8,7 @@ using WebApp.Models;
 namespace WebApp.Persistence.Repository
 {
 
-    public interface ITicketsRepository : IRepository<Ticket, int>
+    public interface ITicketsRepository : IRepository<BaseTicket, int>
     {
 
     }

@@ -31,7 +31,6 @@ export class TicketComponent implements OnInit {
   onFormSubmit() {  
     this.dataSaved = false;  
     const employee = this.employeeForm.value;  
-    this.CreateTicket(employee);  
     this.employeeForm.reset();  
   }  
   loadTicketToEdit(employeeId: string) {  
@@ -44,28 +43,7 @@ export class TicketComponent implements OnInit {
     });  
   
   }  
-  CreateTicket(employee: Ticket) {  
-    if (this.employeeIdUpdate == null) {  
-      this.employeeService.createTicket(employee).subscribe(  
-        () => {  
-          this.dataSaved = true;  
-          this.massage = 'Record saved Successfully';  
-          this.loadAllTickets();  
-          this.employeeIdUpdate = null;  
-          this.employeeForm.reset();  
-        }  
-      );  
-    } else {  
-      employee.Id = this.employeeIdUpdate;  
-      this.employeeService.updateTicket(employee).subscribe(() => {  
-        this.dataSaved = true;  
-        this.massage = 'Record Updated Successfully';  
-        this.loadAllTickets();  
-        this.employeeIdUpdate = null;  
-        this.employeeForm.reset();  
-      });  
-    }  
-  }   
+ 
   deleteEmployee(employeeId: string) {  
     if (confirm("Are you sure you want to delete this ?")) {   
     this.employeeService.deleteTicketById(employeeId).subscribe(() => {  

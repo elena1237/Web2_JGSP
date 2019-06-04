@@ -14,8 +14,7 @@ namespace WebApp.Persistence
         //public DbSet<ApplicationUser> AppUser { get; set; }
         public DbSet<Line> Lines { get; set; }
         public DbSet<Station> Stations { get; set; }
-        public DbSet<Ticket> Tickets { get; set; }
-        public DbSet<Passenger> Passengers { get; set; }
+        public DbSet<BaseTicket> BaseTickets { get; set; }
         public DbSet<PassengerType> PassengerTypes { get; set; }
         public DbSet<PriceList> PriceLists { get; set; }
         public DbSet<ScheduleType> ScheduleTypes { get; set; }
