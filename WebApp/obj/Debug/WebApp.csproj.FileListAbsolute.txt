@@ -443,8 +443,6 @@ C:\Users\user\Desktop\Web2_JGSP\WebApp\bin\Microsoft.CodeDom.Providers.DotNetCom
 C:\Users\user\Desktop\Web2_JGSP\WebApp\obj\Debug\WebApp.csproj.CoreCompileInputs.cache
 C:\Users\user\Desktop\Web2_JGSP\WebApp\obj\Debug\WebApp.dll
 C:\Users\user\Desktop\Web2_JGSP\WebApp\obj\Debug\WebApp.pdb
-C:\Users\user\Desktop\Web2_JGSP\WebApp\obj\Debug\WebApp.Migrations.InicijalnaMigracija.resources
-C:\Users\user\Desktop\Web2_JGSP\WebApp\obj\Debug\WebApp.csproj.GenerateResource.Cache
 C:\Users\e3145-2015\Desktop\Web2_JGSP-master (1)\Web2_JGSP-master\WebApp\bin\WebApp.dll.config
 C:\Users\e3145-2015\Desktop\Web2_JGSP-master (1)\Web2_JGSP-master\WebApp\bin\WebApp.dll
 C:\Users\e3145-2015\Desktop\Web2_JGSP-master (1)\Web2_JGSP-master\WebApp\bin\WebApp.pdb
@@ -594,3 +592,6 @@ C:\Users\e3145-2015\Desktop\Web2_JGSP-master (1)\Web2_JGSP-master\WebApp\obj\Deb
 C:\Users\e3145-2015\Desktop\Web2_JGSP-master (1)\Web2_JGSP-master\WebApp\obj\Debug\WebApp.Migrations.InicijalnaMigracijaAjde.resources
 C:\Users\e3145-2015\Desktop\Web2_JGSP-master (1)\Web2_JGSP-master\WebApp\obj\Debug\WebApp.csproj.GenerateResource.Cache
 C:\Users\e3145-2015\Desktop\Web2_JGSP-master (1)\Web2_JGSP-master\WebApp\obj\Debug\WebApp.Migrations.test.resources
+C:\Users\user\Desktop\Web2_JGSP\WebApp\obj\Debug\WebApp.csprojResolveAssemblyReference.cache
+C:\Users\user\Desktop\Web2_JGSP\WebApp\obj\Debug\WebApp.Migrations.ajmsrecomoja.resources
+C:\Users\user\Desktop\Web2_JGSP\WebApp\obj\Debug\WebApp.csproj.GenerateResource.Cache

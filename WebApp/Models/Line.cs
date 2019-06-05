@@ -13,6 +13,7 @@ namespace WebApp.Models
         [Required]
         [Range(1, 100)]
         public int LineNumber { get; set; }
+        public int TypeOfLine { get; set; }
         public List<Station> Stations { get; set; }
 
 

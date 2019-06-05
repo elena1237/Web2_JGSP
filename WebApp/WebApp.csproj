@@ -265,13 +265,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201906041046487_InicijalnaMigracijaAjde.cs" />
-    <Compile Include="Migrations\201906041046487_InicijalnaMigracijaAjde.Designer.cs">
-      <DependentUpon>201906041046487_InicijalnaMigracijaAjde.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201906041057261_test.cs" />
-    <Compile Include="Migrations\201906041057261_test.Designer.cs">
-      <DependentUpon>201906041057261_test.cs</DependentUpon>
+    <Compile Include="Migrations\201906051919488_ajmsrecomoja.cs" />
+    <Compile Include="Migrations\201906051919488_ajmsrecomoja.Designer.cs">
+      <DependentUpon>201906051919488_ajmsrecomoja.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -413,11 +409,8 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201906041046487_InicijalnaMigracijaAjde.resx">
-      <DependentUpon>201906041046487_InicijalnaMigracijaAjde.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906041057261_test.resx">
-      <DependentUpon>201906041057261_test.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201906051919488_ajmsrecomoja.resx">
+      <DependentUpon>201906051919488_ajmsrecomoja.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

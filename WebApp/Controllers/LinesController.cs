@@ -15,6 +15,7 @@ using WebApp.Persistence.UnitOfWork;
 
 namespace WebApp.Controllers
 {
+    [RoutePrefix("api/Line")]
     public class LinesController : ApiController
     {
         private IUnitOfWork db;
@@ -23,6 +24,100 @@ namespace WebApp.Controllers
         {
             this.db = db;
         }
+
+
+        [Route("GetScheduleLines")]
+        public IEnumerable<Line> GetScheduleLines(string typeOfLine)
+        {
+            List<Line> lines = new List<Line>();
+            var linijice = db.Lines.GetAll().ToList();
+
+            if (typeOfLine == null)
+            {
+
+
+                var type = db.Schedules.GetAll().FirstOrDefault(u => u.ScheduleTypeId == 1);
+                return db.Lines.GetAll().Where(u => u.Id == type.LineId);
+
+            }
+            else if (typeOfLine == "Prigradski")
+            {
+
+                var type = db.Schedules.GetAll().FirstOrDefault(u => u.ScheduleTypeId == 2);
+                return db.Lines.GetAll().Where(u => u.Id == type.LineId);
+
+            } else
+            {
+                var type = db.Schedules.GetAll().FirstOrDefault(u => u.ScheduleTypeId == 1);
+                return db.Lines.GetAll().Where(u => u.TypeOfLine == type.ScheduleTypeId);
+
+               
+                
+            }
+        }
+
+        [Route("GetSchedule")]
+        public string GetSchedule(string typeOfLine, string typeOfDay, string Number)
+        {
+            //var type = db.Schedules.GetAll().FirstOrDefault(u => u.ScheduleType.Name == typeOfLine);
+            //var day = db.Schedules.GetAll().FirstOrDefault(u => u.DayInWeek.ToString() == typeOfDay);
+            var line = db.Lines.GetAll().FirstOrDefault(u => u.LineNumber.ToString() == Number);
+
+
+            var schedules = db.Schedules.GetAll().ToList();
+            var lines = db.Lines.GetAll().ToList();
+            var scheduletipes = db.ScheduleTypes.GetAll().Where(e=>e.Name==typeOfLine);
+
+
+            string dep = "";
+            int i = 0;
+            foreach (Schedule l in schedules)
+            {
+                foreach( var item in scheduletipes)
+                { 
+                    if ((l.Line.Id == line.Id) && (l.DayInWeek == typeOfDay) && (l.ScheduleTypeId == item.Id))
+                    {
+                        return l.Departure;
+
+                    }
+                }
+
+            }
+
+            return null;
+          
+        }
+
+        //[Route("GetScheduleAdmin")]
+        //public IEnumerable<ScheduleLine> GetScheduleAdmin()
+        //{
+        //    List<ScheduleLine> schedule = new List<ScheduleLine>();
+        //    var lines = db.Lines.GetAll();
+
+        //    foreach(var line in lines)
+        //    {
+        //        ScheduleLine sl = new ScheduleLine();
+        //        sl.Number = line.Number;
+        //        foreach(var dep in line.Departures)
+        //        {
+        //            var day = db.Days.GetAll().FirstOrDefault(u => u.IDDay == dep.IDDay);
+
+        //            sl.Time = dep.Time;
+        //            sl.Day = day.KindOfDay;
+        //            schedule.Add(sl);
+        //        }
+
+        //    }
+
+        //    return schedule;
+            
+        //}
+
+
+
+
+
+
         // GET: api/Lines
         public IEnumerable<Line> GetLines()
         {
