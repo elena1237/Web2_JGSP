@@ -1,7 +1,7 @@
 <h2 align="center">Schedule</h2>
 <hr>
 <form [formGroup]="ScheduleForm" (ngSubmit)="ScheduleShow()">
-    <table align="center" border='1'>
+    <table align="center">
        <tr>
           <th>Type of Line:</th>
           <td>
@@ -41,6 +41,6 @@
 
       <table align="center"> 
       <ul>
-  <li>{{times}}</li>
+  <li *ngFor="let time of parser">{{time}}</li>
 </ul>
 </table>

@@ -70,21 +70,20 @@ namespace WebApp.Controllers
 
 
             string dep = "";
-            int i = 0;
             foreach (Schedule l in schedules)
             {
                 foreach( var item in scheduletipes)
                 { 
                     if ((l.Line.Id == line.Id) && (l.DayInWeek == typeOfDay) && (l.ScheduleTypeId == item.Id))
                     {
-                        return l.Departure;
+                        dep += l.Departure+",";
 
                     }
                 }
 
             }
 
-            return null;
+            return dep;
           
         }
 

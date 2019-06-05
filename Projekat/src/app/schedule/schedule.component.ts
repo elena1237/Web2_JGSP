@@ -69,8 +69,8 @@ TypeDay:Array<Object> = [
     let typeOfDay = this.ScheduleForm.controls['day'].value;
     let Number = this.ScheduleForm.controls['number'].value;
     this.times = await this.scheduleService.getSchedule(typeOfLine,typeOfDay,Number);
-    //this.parser=this.times.split(' ');
-    //alert(this.parser[1]);
+    this.parser=this.times.split(',');
+    alert(this.parser[1]);
   }
 
 }
