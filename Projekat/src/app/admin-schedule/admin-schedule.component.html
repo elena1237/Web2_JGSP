@@ -1,10 +1,39 @@
-<table mdbTable small="true"> 
+<table mdbTable border="2" small="true"> 
+    <thead>
+        <tr>
+          <th>Id</th>
+          <th>Departure</th>
+          <th>LineId</th>
+          <th>DayInWeek</th>
+        </tr>
+      </thead>
+
   <tbody>
     <tr mdbTableCol *ngFor="let el of schedules">
       <th scope="row">{{el.Id}}</th>
       <td>{{el.Departure}}</td>
       <td>{{el.LineId}}</td>
       <td>{{el.DayInWeek}}</td>
+      <td><button (click)="Update(el)" data-toggle="collapse" href="#update">Update</button>
+      <td><button type="button" (click)="Delete(el)" >Delete</button>
+
     </tr>
   </tbody>
 </table>
+
+<div id="update" class="collapse" >
+  <form [formGroup]="updateForm" (ngSubmit)="UpdateSubmit()">
+      <label>
+          Line Id:
+          <input mdInput type="text" formControlName="LineId" [(ngModel)]="LineId">
+        </label>
+        <input mdInput type="text" hidden="true" formControlName="Id" [(ngModel)]="Id">
+
+        <label>
+            Departure:
+            <input mdInput type="text" formControlName="Departure" [(ngModel)]="Departure">
+          </label>
+       <button type="submit" >Update</button>
+       <!-- placeholder="{{departure}}" -->
+    </form>
+  </div>

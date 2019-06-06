@@ -14,7 +14,6 @@ import { AdminScheduleComponent } from '../admin-schedule/admin-schedule.compone
 export class LoginComponent {
 
   message: string;
-  route: string;
 
 
   loginForm = this.fb.group({
@@ -22,26 +21,20 @@ export class LoginComponent {
     password: ['', Validators.required],
   });
 
-  constructor(public authService: LoginService, public router: Router, private fb: FormBuilder/*, private aa: AdminScheduleComponent*/) {
+  constructor(public authService: LoginService, public router: Router, private fb: FormBuilder) {
     this.setMessage();
   }
 
   setMessage() {
     this.message = 'Logged ' + (this.authService.isLoggedIn ? 'in' : 'out - make you profile');
+    
   }
 
   login() {
     this.authService.login(this.loginForm.value).subscribe((data) => {
       this.setMessage();
       console.log(data);
-      if(localStorage.role == "Admin")
-      {
-          this.route = "/admin-schedule";
-        //  this.aa.ngOnInit();
-
-
-      }else
-        this.route = "other";
+     
     });
   }
 

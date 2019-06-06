@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
+using System.Web.UI;
 using WebApp.Models;
 using WebApp.Persistence.Repository;
 using WebApp.Persistence.UnitOfWork;
@@ -31,7 +32,7 @@ namespace WebApp.Controllers
         public IEnumerable<Schedule> GetSchedules()
         {
             return _unitOfWork.Schedules.GetAll();
-    
+
         }
 
         // GET: api/Schedules/5
@@ -49,6 +50,8 @@ namespace WebApp.Controllers
 
         // PUT: api/Schedules/5
         [ResponseType(typeof(void))]
+        [Route("PutSchedule")]
+
         public IHttpActionResult PutSchedule(int id, Schedule schedule)
         {
             if (!ModelState.IsValid)
@@ -99,6 +102,8 @@ namespace WebApp.Controllers
 
         // DELETE: api/Schedules/5
         [ResponseType(typeof(Schedule))]
+        
+        [Route("DeleteSchedule")]
         public IHttpActionResult DeleteSchedule(int id)
         {
             Schedule schedule = _unitOfWork.Schedules.Get(id);
@@ -109,6 +114,8 @@ namespace WebApp.Controllers
 
             _unitOfWork.Schedules.Remove(schedule);
             _unitOfWork.Complete();
+            
+
 
             return Ok(schedule);
         }
