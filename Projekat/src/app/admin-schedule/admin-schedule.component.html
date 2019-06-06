@@ -1,0 +1,10 @@
+<table mdbTable small="true"> 
+  <tbody>
+    <tr mdbTableCol *ngFor="let el of schedules">
+      <th scope="row">{{el.Id}}</th>
+      <td>{{el.Departure}}</td>
+      <td>{{el.LineId}}</td>
+      <td>{{el.DayInWeek}}</td>
+    </tr>
+  </tbody>
+</table>

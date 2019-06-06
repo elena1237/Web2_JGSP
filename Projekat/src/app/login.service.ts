@@ -35,6 +35,7 @@ export class LoginService {
 
         localStorage.setItem('jwt', jwt)
         localStorage.setItem('role', role);
+       
       }),
 
       catchError(this.handleError<any>('login'))

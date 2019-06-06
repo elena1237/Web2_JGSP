@@ -14,6 +14,7 @@ using WebApp.Persistence.UnitOfWork;
 
 namespace WebApp.Controllers
 {
+    [RoutePrefix("Api/Schedules")]
     public class SchedulesController : ApiController
     {
 
@@ -24,7 +25,8 @@ namespace WebApp.Controllers
             this._unitOfWork = unitOfWork;
         }
 
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
+        [Route("AdminSchedules")]
         // GET: api/Schedules
         public IEnumerable<Schedule> GetSchedules()
         {

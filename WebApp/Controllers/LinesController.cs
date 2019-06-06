@@ -82,7 +82,8 @@ namespace WebApp.Controllers
                 }
 
             }
-
+            if (dep.Length > 0)
+                dep = dep.Substring(0, dep.Length - 1);
             return dep;
           
         }

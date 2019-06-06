@@ -15,6 +15,8 @@ import { BuyTicketComponent } from './buy-ticket/buy-ticket.component';
 import {LoginService} from './login.service';
 import {BuyticketService} from './buyticket.service';
 import { TicketComponent } from './ticket/ticket.component';
+import { AdminScheduleComponent } from './admin-schedule/admin-schedule.component';
+import { AdminScheduleService } from './admin-schedule.service';
 
 
 @NgModule({
@@ -27,7 +29,8 @@ import { TicketComponent } from './ticket/ticket.component';
     ScheduleComponent,
     PriceListComponent,
     BuyTicketComponent,
-    TicketComponent
+    TicketComponent,
+    AdminScheduleComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,6 +40,6 @@ import { TicketComponent } from './ticket/ticket.component';
     FormsModule,
   ],
   bootstrap: [AppComponent],
-  providers: [LoginService,HttpClientModule, BuyticketService]
+  providers: [LoginService,HttpClientModule, BuyticketService, AdminScheduleService]
 })
 export class AppModule { }
