@@ -50,9 +50,9 @@ namespace WebApp.Controllers
 
         // PUT: api/Schedules/5
         [ResponseType(typeof(void))]
-        [Route("PutSchedule")]
+        [Route("PutSchedule/{id}")]
 
-        public IHttpActionResult PutSchedule(int id, Schedule schedule)
+        public IHttpActionResult PutSchedule(int id, [FromBody] Schedule schedule)
         {
             if (!ModelState.IsValid)
             {

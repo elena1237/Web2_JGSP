@@ -17,5 +17,13 @@ namespace WebApp.Models
         public ScheduleType ScheduleType { get; set; }
         public int LineId { get; set; }
         public Line Line { get; set; }
+
+
+        //public Schedule(int id,string dep,int lineid)
+        //{
+        //    Id = id;
+        //    Departure = dep;
+        //    LineId = lineid;
+        //}
     }
 }

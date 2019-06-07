@@ -28,7 +28,7 @@ export class AdminScheduleService {
 
   public updateScheduleById(schedule: Schedule): Observable<Schedule> {  
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json'}) };  
-    return this.http.put<Schedule>(this.url + '/PutSchedule?id=' +schedule.Id+"&schedule="+schedule,  
+    return this.http.put<Schedule>(this.url + '/PutSchedule/' +schedule.Id,schedule,  
 httpOptions);  
 
   }

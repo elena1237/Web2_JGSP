@@ -4,6 +4,7 @@ import { Schedule } from '../models/Schedule';
 import { AdminScheduleService } from '../admin-schedule.service';
 import { Observable } from 'rxjs';
 import { FormBuilder, Validators } from '@angular/forms';
+import { ScheduleType } from '../models/ScheduleType';
 
 @Component({
   selector: 'app-admin-schedule',
@@ -14,11 +15,18 @@ export class AdminScheduleComponent implements OnInit {
 
   public schedules: Array<Schedule>;
   public  line: number;
-  public departure: string;
-  public Id: number;
+  public Departure: string;
+  public id: number;
+  private schedule:Schedule;
+  private LineId:number;
+  private DayInWeek:string;
+  private ScheduleTypeId:number;
+  private ScheduleType:ScheduleType;
+  private Line:Line;
+
   updateForm = this.fb.group({
-    LineId: ['', Validators.required],
-    Departure: ['', Validators.required],
+    LineId: [this.LineId, Validators.required],
+    Departure: [this.Departure, Validators.required],
     Id: [''],
 
   });
@@ -30,10 +38,14 @@ export class AdminScheduleComponent implements OnInit {
 
   public Update(selectedSchedule: any)
   {
-      this.line=selectedSchedule.LineId;
-      this.departure=selectedSchedule.Departure;
-      this.Id=selectedSchedule.Id;
-
+    this.LineId =selectedSchedule.LineId;
+    this.Departure=selectedSchedule.Departure;
+    this.id=selectedSchedule.Id; 
+    this.DayInWeek=selectedSchedule.DayInWeek;
+    this.ScheduleTypeId=selectedSchedule.ScheduleTypeId;
+    this.LineId=selectedSchedule.LineId;
+    this.ScheduleType=selectedSchedule.ScheduleType;
+    this.Line=selectedSchedule.Line;
   }
   
   async ngOnInit() {
@@ -54,8 +66,10 @@ public Delete(selectedSchedule: any)
 
 public UpdateSubmit()
 {
-   this.scheduleService.updateScheduleById(this.updateForm.value).subscribe((data) => {
+  this.schedule = new Schedule(this.id, this.Departure,this.LineId,this.DayInWeek,this.ScheduleTypeId,this.ScheduleType,this.Line);
+   this.scheduleService.updateScheduleById(this.schedule).subscribe((data) => {
   });
+  window.location.reload();
 
 
 }
