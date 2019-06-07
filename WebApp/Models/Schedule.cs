@@ -8,7 +8,7 @@ namespace WebApp.Models
 {
     public class Schedule
     {
-         public int Id { get; set; }
+        public int Id { get; set; }
         [Required]
         public string Departure { get; set; }
         [Required]

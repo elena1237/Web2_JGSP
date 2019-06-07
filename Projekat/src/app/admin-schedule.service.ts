@@ -33,5 +33,11 @@ httpOptions);
 
   }
 
+  public createSchedule(schedule: Schedule): Observable<Schedule> {  
+    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json'}) };  
+    return this.http.post<Schedule>(this.url + '/InsertSchedule',  
+    schedule, httpOptions);  
+  }  
+
 
 }

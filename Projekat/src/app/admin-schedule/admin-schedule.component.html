@@ -21,6 +21,8 @@
   </tbody>
 </table>
 
+<button data-toggle="collapse" href="#add"> Add Schedule</button>
+
 <div id="update" class="collapse" >
   <form [formGroup]="updateForm" (ngSubmit)="UpdateSubmit()">
       <label>
@@ -37,3 +39,31 @@
        <!-- placeholder="{{departure}}" -->
     </form>
   </div>
+
+  <div id="add" class="collapse" >
+      <form [formGroup]="addForm" (ngSubmit)="AddSubmit()">
+          <label>
+              Line Id:
+              <input mdInput type="text" formControlName="lineId" >
+            </label>
+            <label>
+              Day In Week:
+              <select formControlName="day">
+                  <option *ngFor="let item of TypeDay" [value] = "item.name">{{item.name}}</option>
+              </select>
+              </label>
+              <label>
+                  <select formControlName="typeOfLine">
+                      <option *ngFor="let item of TypeLine" [value] = "item.name">{{item.name}}</option>
+          
+                  </select>
+              </label>
+            <label>
+                Departure:
+                <input mdInput type="text" formControlName="departure" >
+              </label>
+           <button type="submit" >Add</button>
+           <!-- placeholder="{{departure}}" -->
+        </form>
+      </div>
+    

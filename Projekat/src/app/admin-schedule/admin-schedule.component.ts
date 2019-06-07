@@ -23,6 +23,15 @@ export class AdminScheduleComponent implements OnInit {
   private ScheduleTypeId:number;
   private ScheduleType:ScheduleType;
   private Line:Line;
+  public departure: string;
+  public lineId: number;
+  public typeOfDay: string;
+  public typeOfLine: string;
+  public typeOfLineAdd: ScheduleType;
+  private scheduleAdd:Schedule;
+  public scheduleTypeAd: ScheduleType;
+  public scheduleType : ScheduleType;
+
 
   updateForm = this.fb.group({
     LineId: [this.LineId, Validators.required],
@@ -31,8 +40,29 @@ export class AdminScheduleComponent implements OnInit {
 
   });
 
+  addForm = this.fb.group({
+    lineId: ['', Validators.required],
+    departure: ['', Validators.required],
+    day: [''],
+    typeOfLine: ['']
+
+
+  });
+
+  TypeLine:Array<Object> = [
+    {name: "Gradski"},
+    {name: "Prigradski"},
+
+];
+
+TypeDay:Array<Object> = [
+  {name: "Radni dan"},
+  {name: "Vikend"},
+
+];
 
   constructor(private scheduleService: AdminScheduleService,private fb: FormBuilder) { 
+
     this.schedules = new Array<Schedule>();
   }
 
@@ -74,14 +104,46 @@ public UpdateSubmit()
 
 }
 
+public AddSubmit(){
 
 
+ // this.scheduleAdd.LineId=this.addForm.controls['lineId'].value;
+  //this.scheduleAdd.Departure=this.addForm.controls['departure'].value;
+  let dep = this.addForm.controls['departure'].value;
+  let id = this.addForm.controls['lineId'].value;
+  let day = this.addForm.controls['day'].value;
+  let tof = this.addForm.controls['typeOfLine'].value;
+  let jeca;
+  let tofId;
+  if(tof =="Gradski")
+  {
+    tofId=1;
+    jeca=new ScheduleType(tof,tofId,null);
+   
+  }
+  else
+  {
+    tofId=2;
+    jeca = new ScheduleType(tof,tofId,null);
+    
+    
+    
+
+   }
+
+   this.scheduleAdd = new Schedule(1, dep,id,day,tofId,jeca,null);
+
+   //this.scheduleAdd.Line=null;
+
+   this.scheduleAdd.DayInWeek = this.addForm.controls['day'].value;
 
 
-
-
-  
-
-}
+    this.scheduleService.createSchedule(this.scheduleAdd).subscribe(  
+      () => {  
+        
+      }  
+    );  
+  }        
+} 
 
 

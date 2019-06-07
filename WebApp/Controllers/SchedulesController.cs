@@ -87,7 +87,8 @@ namespace WebApp.Controllers
 
         // POST: api/Schedules
         [ResponseType(typeof(Schedule))]
-        public IHttpActionResult PostSchedule(Schedule schedule)
+        [Route("InsertSchedule")]
+        public IHttpActionResult PostSchedule([FromBody] Schedule schedule)
         {
             if (!ModelState.IsValid)
             {
