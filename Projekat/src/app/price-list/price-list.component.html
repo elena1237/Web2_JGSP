@@ -1,3 +1,71 @@
-<p>
-  price-list works!
-</p>
+<button data-toggle="collapse" href="#skl"> Add</button>
+
+<div id="skl" class="collapse"  >
+  <form [formGroup]="sklForm" (ngSubmit)="AddSubmit()">
+     
+         <label class="col-sm-2 col-form-label">
+          Type of Ticket:
+
+          <select formControlName="ticket">
+              <option *ngFor="let item of TicketType" [value] = "item.name">{{item.name}}</option>
+          </select>
+        </label>
+          <label class="col-sm-2 col-form-label">
+          Type of Passenger:
+          
+              <select formControlName="passenger">
+                  <option *ngFor="let item of PassengerType" [value] = "item.name">{{item.name}}</option>
+      
+              </select>
+          </label>
+          <label class="col-sm-2 col-form-label">
+            Base Price:
+          <input type="text" formControlName="basePrice" />
+            </label>
+            <label class="col-sm-2 col-form-label">
+              Discount:
+            <input type="text" formControlName="discount" />
+              </label>
+              <form>
+              <label>
+                From:
+            <input type="date" [(ngModel)]="Students.dob" name="Students.dob"/>
+            </label>
+            </form>
+            <form>
+            <label>
+              To:
+            <input type="date" [(ngModel)]="Students.dob2" name="Students.dob2"/>
+            </label>
+            </form>
+
+        <!-- <label>
+            From:
+            <form class="form-inline">
+              <div class="form-group">
+                <div class="input-group">
+                  <input class="form-control" placeholder="yyyy-mm-dd"
+                         name="dp2" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </label>
+          <label>To:
+          <form class="form-inline">
+            <div class="form-group">
+              <div class="input-group">
+                <input class="form-control" placeholder="yyyy-mm-dd"
+                       name="dp" [(ngModel)]="model2" ngbDatepicker #d="ngbDatepicker">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </label> -->
+       <button type="submit" >Add</button>
+    </form>
+  </div>

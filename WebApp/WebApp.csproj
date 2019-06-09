@@ -269,6 +269,10 @@
     <Compile Include="Migrations\201906051919488_ajmsrecomoja.Designer.cs">
       <DependentUpon>201906051919488_ajmsrecomoja.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906092045294_mig.cs" />
+    <Compile Include="Migrations\201906092045294_mig.Designer.cs">
+      <DependentUpon>201906092045294_mig.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -411,6 +415,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201906051919488_ajmsrecomoja.resx">
       <DependentUpon>201906051919488_ajmsrecomoja.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906092045294_mig.resx">
+      <DependentUpon>201906092045294_mig.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

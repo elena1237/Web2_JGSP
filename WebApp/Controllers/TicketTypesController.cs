@@ -13,6 +13,7 @@ using WebApp.Persistence.UnitOfWork;
 
 namespace WebApp.Controllers
 {
+    [RoutePrefix("Api/TicketType")]
     public class TicketTypesController : ApiController
     {
         private IUnitOfWork db;
@@ -29,6 +30,7 @@ namespace WebApp.Controllers
 
         // GET: api/TicketTypes/5
         [ResponseType(typeof(TicketType))]
+        [Route("GetById/{id}")]
         public IHttpActionResult GetTicketType(int id)
         {
             TicketType ticketType = db.TicketTypes.Get(id);
@@ -42,7 +44,8 @@ namespace WebApp.Controllers
 
         // PUT: api/TicketTypes/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutTicketType(int id, TicketType ticketType)
+        [Route("PutTicketType/{id}")]
+        public IHttpActionResult PutTicketType(int id, [FromBody]TicketType ticketType)
         {
             if (!ModelState.IsValid)
             {

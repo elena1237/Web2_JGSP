@@ -15,6 +15,7 @@ using WebApp.Persistence.UnitOfWork;
 
 namespace WebApp.Controllers
 {
+    [RoutePrefix("Api/Passengers")]
     public class PassengersController : ApiController
     {
 
@@ -33,6 +34,7 @@ namespace WebApp.Controllers
 
         // GET: api/Passengers/5
         [ResponseType(typeof(Passenger))]
+        [Route("GetById/{id}")]
         public IHttpActionResult GetPassenger(int id)
         {
             Passenger passenger = db.Passengers.Get(id);

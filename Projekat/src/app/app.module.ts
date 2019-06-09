@@ -17,6 +17,8 @@ import {BuyticketService} from './buyticket.service';
 import { TicketComponent } from './ticket/ticket.component';
 import { AdminScheduleComponent } from './admin-schedule/admin-schedule.component';
 import { AdminScheduleService } from './admin-schedule.service';
+import { NgbdDatepickerComponent } from './ngb-datepicker/ngb-datepicker.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -31,6 +33,7 @@ import { AdminScheduleService } from './admin-schedule.service';
     BuyTicketComponent,
     TicketComponent,
     AdminScheduleComponent,
+    NgbdDatepickerComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,6 +41,7 @@ import { AdminScheduleService } from './admin-schedule.service';
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
+    NgbModule.forRoot(),
   ],
   bootstrap: [AppComponent],
   providers: [LoginService,HttpClientModule, BuyticketService, AdminScheduleService]

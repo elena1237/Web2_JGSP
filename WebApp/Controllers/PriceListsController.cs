@@ -13,6 +13,7 @@ using WebApp.Persistence.UnitOfWork;
 
 namespace WebApp.Controllers
 {
+    [RoutePrefix("Api/PriceList")]
     public class PriceListsController : ApiController
     {
         private IUnitOfWork db;
@@ -77,6 +78,7 @@ namespace WebApp.Controllers
 
         // POST: api/PriceLists
         [ResponseType(typeof(PriceList))]
+        [Route("InsertPriceList")]
         public IHttpActionResult PostPriceList(PriceList priceList)
         {
             if (!ModelState.IsValid)

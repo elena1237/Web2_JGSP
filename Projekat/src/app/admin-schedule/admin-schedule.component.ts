@@ -21,7 +21,7 @@ export class AdminScheduleComponent implements OnInit {
   private LineId:number;
   private DayInWeek:string;
   private ScheduleTypeId:number;
-  private ScheduleType:ScheduleType;
+  //private ScheduleType:ScheduleType;
   private Line:Line;
   public departure: string;
   public lineId: number;
@@ -74,7 +74,7 @@ TypeDay:Array<Object> = [
     this.DayInWeek=selectedSchedule.DayInWeek;
     this.ScheduleTypeId=selectedSchedule.ScheduleTypeId;
     this.LineId=selectedSchedule.LineId;
-    this.ScheduleType=selectedSchedule.ScheduleType;
+    //this.ScheduleType=selectedSchedule.ScheduleType;
     this.Line=selectedSchedule.Line;
   }
   
@@ -96,7 +96,7 @@ public Delete(selectedSchedule: any)
 
 public UpdateSubmit()
 {
-  this.schedule = new Schedule(this.id, this.Departure,this.LineId,this.DayInWeek,this.ScheduleTypeId,this.ScheduleType,this.Line);
+  this.schedule = new Schedule(this.id, this.Departure,this.LineId,this.DayInWeek,this.ScheduleTypeId,/*this.ScheduleType*/this.Line);
    this.scheduleService.updateScheduleById(this.schedule).subscribe((data) => {
   });
   window.location.reload();
@@ -118,22 +118,18 @@ public AddSubmit(){
   if(tof =="Gradski")
   {
     tofId=1;
-    jeca=new ScheduleType(tof,tofId,null);
+    //jeca=new ScheduleType(tof,tofId,null);
    
   }
   else
   {
     tofId=2;
-    jeca = new ScheduleType(tof,tofId,null);
-    
-    
-    
-
+    //jeca = new ScheduleType(tof,tofId,null);
+  
    }
 
-   this.scheduleAdd = new Schedule(1, dep,id,day,tofId,jeca,null);
+   this.scheduleAdd = new Schedule(1, dep,id,day,tofId,null);
 
-   //this.scheduleAdd.Line=null;
 
    this.scheduleAdd.DayInWeek = this.addForm.controls['day'].value;
 

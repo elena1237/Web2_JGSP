@@ -13,6 +13,7 @@ using WebApp.Persistence.UnitOfWork;
 
 namespace WebApp.Controllers
 {
+    [RoutePrefix("Api/PassengerType")]
     public class PassengerTypesController : ApiController
     {
         private IUnitOfWork db;
@@ -21,6 +22,10 @@ namespace WebApp.Controllers
         {
             this.db = db;
         }
+
+        
+        [ResponseType(typeof(PassengerType))]
+        [Route("GetAllPT")]
         // GET: api/PassengerTypes
         public IEnumerable<PassengerType> GetPassengerTypes()
         {
@@ -29,6 +34,7 @@ namespace WebApp.Controllers
 
         // GET: api/PassengerTypes/5
         [ResponseType(typeof(PassengerType))]
+        [Route("GetById/{id}")]
         public IHttpActionResult GetPassengerType(int id)
         {
             PassengerType passengerType = db.PassengerTypes.Get(id);
@@ -42,7 +48,8 @@ namespace WebApp.Controllers
 
         // PUT: api/PassengerTypes/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutPassengerType(int id, PassengerType passengerType)
+        [Route("PutPassengerType/{id}")]
+        public IHttpActionResult PutPassengerType(int id, [FromBody]PassengerType passengerType)
         {
             if (!ModelState.IsValid)
             {

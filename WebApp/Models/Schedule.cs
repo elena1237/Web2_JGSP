@@ -14,7 +14,7 @@ namespace WebApp.Models
         [Required]
         public string DayInWeek { get; set; } 
         public int ScheduleTypeId { get; set; }
-        public ScheduleType ScheduleType { get; set; }
+        //public ScheduleType ScheduleType { get; set; }
         public int LineId { get; set; }
         public Line Line { get; set; }
 

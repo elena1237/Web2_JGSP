@@ -10,8 +10,8 @@ namespace WebApp.Models
     {
         public int Id { get; set; }
        
-        public DateTime From { get; set; }
-        public DateTime To { get; set; }
+        public string From { get; set; }
+        public string To { get; set; }
         [Required]
         [Range(0, 15000)]
         public float TicketPrice { get; set; }

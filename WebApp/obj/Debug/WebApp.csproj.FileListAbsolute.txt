@@ -595,3 +595,4 @@ C:\Users\e3145-2015\Desktop\Web2_JGSP-master (1)\Web2_JGSP-master\WebApp\obj\Deb
 C:\Users\user\Desktop\Web2_JGSP\WebApp\obj\Debug\WebApp.csprojResolveAssemblyReference.cache
 C:\Users\user\Desktop\Web2_JGSP\WebApp\obj\Debug\WebApp.Migrations.ajmsrecomoja.resources
 C:\Users\user\Desktop\Web2_JGSP\WebApp\obj\Debug\WebApp.csproj.GenerateResource.Cache
+C:\Users\user\Desktop\Web2_JGSP\WebApp\obj\Debug\WebApp.Migrations.mig.resources
