@@ -27,14 +27,14 @@ export class PriceListComponent implements OnInit {
   public priceList: PriceList;
   public model: DatePipe;
   public model2: DatePipe;
-  public passengers: Observable<PassengerType>;
-  public tickets: Observable<TicketType>;
+  public passenger: PassengerType = new PassengerType();
+  public ticket: TicketType = new TicketType();
   public basePrice: number;
   public discount: number;
   public ticketType: TicketType;
   public passengerType: PassengerType;
   public ticketTypeHelp:TicketType;
-  public passTypeHelp : PassengerType;
+  public passTypeHelp : any;
   
 
 
@@ -69,7 +69,6 @@ export class PriceListComponent implements OnInit {
   constructor(private priceListService: PriceListService,private fb: FormBuilder) { }
 
   ngOnInit() {
-
   }
 
   // public onDate(selectedSchedule: any)
@@ -78,7 +77,7 @@ export class PriceListComponent implements OnInit {
     
 
   // }
-  public AddSubmit(){
+  public async AddSubmit(){
 
      let to = this.model;
      let from = this.model2;
@@ -119,40 +118,21 @@ export class PriceListComponent implements OnInit {
 
        }
 
-       this.tickets = this.priceListService.getTicketById(ticketId);
+       this.priceListService.getTicketById(ticketId).subscribe(data => {this.ticket=data});
+       console.log(this.ticket.Id);
+  
+        this.ticket.Price = basePrice;
 
+       this.priceListService.updateTicketTypeById(this.ticket).subscribe((data) => {
+       });
+
+
+       this.priceListService.getPassengerById(pasId).subscribe(data => {this.passenger=data}); 
 
        
-       this.tickets.forEach(element => {
-         if(element.Id==ticketId)
-          this.ticketTypeHelp=new TicketType(element.Id,element.Name,element.Price);
-   
-       });
-   
+       this.passenger.Discount = discount;
 
-       //let nesto=this.ticketTypeHelp.Id;
-       //let idTT=nesto.Id;
-       //let nameTT=this.ticketTypeHelp.Name;
-
-
-      this.ticketType = new TicketType(this.ticketTypeHelp.Id,this.ticketTypeHelp.Name,basePrice);
-       this.priceListService.updateTicketTypeById(this.ticketType).subscribe((data) => {
-       });
-
-
-       this.passengers =  this.priceListService.getPassengerById(pasId); 
-       let namePas;
-       let idP;
-       this.passengers.forEach(element => {
-        if(element.Id==pasId)
-          this.passTypeHelp=new PassengerType(element.Id,element.Name,element.Discount);
-         
-         });
-
-       //let nesto2=this.passTypeHelp.Id;
-       //let name2 = this.passTypeHelp.Name;
-       this.passengerType = new PassengerType(this.passTypeHelp.Id,this.passTypeHelp.Name,discount);
-       this.priceListService.updatePassengerTypeById(this.passengerType).subscribe((data) => {
+       this.priceListService.updatePassengerTypeById(this.passenger).subscribe((data) => {
        });
 
        const d = new DatePipe('en-US').transform(this.Students.dob,'dd/MM/yyyy');
