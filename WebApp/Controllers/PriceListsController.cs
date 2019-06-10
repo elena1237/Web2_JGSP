@@ -23,6 +23,8 @@ namespace WebApp.Controllers
             this.db = db;
         }
         // GET: api/PriceLists
+        [ResponseType(typeof(PriceList))]
+        [Route("GetAllPL")]
         public IEnumerable<PriceList> GetPriceLists()
         {
             return db.PriceLists.GetAll();

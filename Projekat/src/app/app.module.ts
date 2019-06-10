@@ -19,6 +19,7 @@ import { AdminScheduleComponent } from './admin-schedule/admin-schedule.componen
 import { AdminScheduleService } from './admin-schedule.service';
 import { NgbdDatepickerComponent } from './ngb-datepicker/ngb-datepicker.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { PriceListUserComponent } from './price-list-user/price-list-user.component';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     TicketComponent,
     AdminScheduleComponent,
     NgbdDatepickerComponent,
+    PriceListUserComponent,
   ],
   imports: [
     BrowserModule,

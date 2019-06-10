@@ -1,0 +1,31 @@
+
+
+<table class="table table-dark">
+    <thead>
+      <tr>
+        <th scope="col">TypeofCard</th>
+        <th scope="col">TypeOfUser</th>
+        <th scope="col">Price</th>
+        <th scope="col">From</th>
+        <th scope="col">To</th>
+
+      </tr>
+    </thead>
+    <tbody>
+        <ng-container *ngFor="let priceList of priceLists">
+            <ng-container *ngFor="let tt of tickets; let i=index" >
+
+            <tr *ngFor="let pt of passengers; let i=index" > 
+                       
+           
+            <td>{{priceList.From}}</td>
+            <td>{{priceList.To}}</td>
+            <td *ngIf="priceList.TicketTypeId==tt.Id">{{tt.Name}}</td>
+
+            <td *ngIf="priceList.PassengerTypeId==pt.Id">{{pt.Name}}</td>
+            </tr>
+        </ng-container>
+      </ng-container>
+
+    </tbody>
+  </table>

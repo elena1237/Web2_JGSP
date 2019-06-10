@@ -22,6 +22,9 @@ namespace WebApp.Controllers
         {
             this.db = db;
         }
+        
+        [ResponseType(typeof(TicketType))]
+        [Route("GetAllTT")]
         // GET: api/TicketTypes
         public IEnumerable<TicketType> GetTicketTypes()
         {

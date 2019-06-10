@@ -17,10 +17,15 @@ export class PriceListService {
   constructor(private http: HttpClient, private fb: FormBuilder) { }  
 
 
-  // public getAllPassTypes(): Promise<PassengerType[]>{
-  //   return this.http.get<PassengerType[]>('http://localhost:52295/Api/PassengerType/GetAllPT').toPromise<PassengerType[]>();  
-  // }
-
+  public getAllPassTypes(): Promise<PassengerType[]>{
+    return this.http.get<PassengerType[]>('http://localhost:52295/Api/PassengerType/GetAllPT').toPromise<PassengerType[]>();  
+  }
+  public getAllTicketTypes(): Promise<TicketType[]>{
+    return this.http.get<TicketType[]>('http://localhost:52295/Api/TicketType/GetAllTT').toPromise<TicketType[]>();  
+  }
+  public getAllPriceList(): Promise<PriceList[]>{
+    return this.http.get<PriceList[]>('http://localhost:52295/Api/PriceList/GetAllPL').toPromise<PriceList[]>();  
+  }
 
 
   public getPassengerById(passenger: number): Observable<PassengerType> {  
