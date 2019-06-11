@@ -13,6 +13,8 @@ using WebApp.Persistence.UnitOfWork;
 
 namespace WebApp.Controllers
 {
+    [RoutePrefix("Api/Stations")]
+
     public class StationsController : ApiController
     {
         public IUnitOfWork db { get; set; }
@@ -22,6 +24,8 @@ namespace WebApp.Controllers
             this.db = db;
         }
         // GET: api/Stations
+        
+        [Route("AllStations")]
         public IEnumerable<Station> GetStations()
         {
             return db.Stations.GetAll();
@@ -42,6 +46,7 @@ namespace WebApp.Controllers
 
         // PUT: api/Stations/5
         [ResponseType(typeof(void))]
+ 
         public IHttpActionResult PutStation(int id, Station station)
         {
             if (!ModelState.IsValid)
@@ -77,7 +82,8 @@ namespace WebApp.Controllers
 
         // POST: api/Stations
         [ResponseType(typeof(Station))]
-        public IHttpActionResult PostStation(Station station)
+        [Route("InsertStation")]
+        public IHttpActionResult PostStation([FromBody]Station station)
         {
             if (!ModelState.IsValid)
             {
@@ -87,7 +93,9 @@ namespace WebApp.Controllers
             db.Stations.Add(station);
             db.Complete();
 
-            return CreatedAtRoute("DefaultApi", new { id = station.Id }, station);
+            //return CreatedAtRoute("DefaultApi", new { id = station.Id }, station);
+
+            return CreatedAtRoute("DefaultApi", new { controller = "station", id = station.Id }, station);
         }
 
         // DELETE: api/Stations/5

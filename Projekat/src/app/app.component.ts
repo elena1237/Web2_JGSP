@@ -1,4 +1,5 @@
-import { Component, NgModule } from '@angular/core';
+import { Component, NgModule, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,8 +9,29 @@ import { Component, NgModule } from '@angular/core';
 
 
 
-export class AppComponent {
-  title = 'Projekat';
+export class AppComponent implements OnInit{
+  ngOnInit(): void {
+
+    this.method();
+
 }
 
+
+  constructor(private router: Router){}
+  public show: boolean = false
+
+  title = 'Projekat';
+
+  public method()
+  {
+      if(localStorage.role == 'Admin')
+      {
+        this.show = true;
+
+      }
+
+
+  }
+
+}
 

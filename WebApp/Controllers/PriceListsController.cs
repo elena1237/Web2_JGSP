@@ -91,7 +91,7 @@ namespace WebApp.Controllers
             db.PriceLists.Add(priceList);
             db.Complete();
 
-            return CreatedAtRoute("DefaultApi", new { id = priceList.Id }, priceList);
+            return CreatedAtRoute("DefaultApi", new { controller = "priceList", id = priceList.Id }, priceList);
         }
 
         // DELETE: api/PriceLists/5
