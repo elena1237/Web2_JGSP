@@ -20,6 +20,7 @@ import { AdminScheduleService } from './admin-schedule.service';
 import { NgbdDatepickerComponent } from './ngb-datepicker/ngb-datepicker.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { PriceListUserComponent } from './price-list-user/price-list-user.component';
+import { AdminStationsComponent } from './admin-stations/admin-stations.component';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { PriceListUserComponent } from './price-list-user/price-list-user.compon
     AdminScheduleComponent,
     NgbdDatepickerComponent,
     PriceListUserComponent,
+    AdminStationsComponent,
   ],
   imports: [
     BrowserModule,

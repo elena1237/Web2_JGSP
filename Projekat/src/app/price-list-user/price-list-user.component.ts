@@ -24,7 +24,7 @@ export class PriceListUserComponent implements OnInit {
     this.priceLists = await this.priceListService.getAllPriceList();
     this.tickets = await this.priceListService.getAllTicketTypes();
     this.passengers = await this.priceListService.getAllPassTypes();
-
+  
   }
 
 

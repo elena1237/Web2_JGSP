@@ -12,20 +12,17 @@
       </tr>
     </thead>
     <tbody>
-        <ng-container *ngFor="let priceList of priceLists">
+        <tr *ngFor="let priceList of priceLists">
             <ng-container *ngFor="let tt of tickets; let i=index" >
-
-            <tr *ngFor="let pt of passengers; let i=index" > 
-                       
-           
-            <td>{{priceList.From}}</td>
-            <td>{{priceList.To}}</td>
-            <td *ngIf="priceList.TicketTypeId==tt.Id">{{tt.Name}}</td>
-
-            <td *ngIf="priceList.PassengerTypeId==pt.Id">{{pt.Name}}</td>
-            </tr>
-        </ng-container>
-      </ng-container>
-
+                
+                <td *ngIf="priceList.TicketTypeId==tt.Id">{{tt.Name}}</td>
+            </ng-container>
+            <ng-container *ngFor="let pt of passengers; let i=index" >
+                <td *ngIf="priceList.PassengerTypeId==pt.Id">{{pt.Name}}</td>
+            </ng-container>
+                <td>{{priceList.TicketPrice}}</td>
+                <td>{{priceList.From}}</td>
+                <td>{{priceList.To}}</td>
+        </tr> 
     </tbody>
   </table>

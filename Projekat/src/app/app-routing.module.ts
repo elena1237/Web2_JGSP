@@ -8,6 +8,7 @@ import { BuyTicketComponent } from './buy-ticket/buy-ticket.component';
 import {AuthGuard} from './login/auth/auth.guard';
 import { AdminScheduleComponent } from './admin-schedule/admin-schedule.component';
 import { PriceListUserComponent } from './price-list-user/price-list-user.component';
+import { AdminStationsComponent } from './admin-stations/admin-stations.component';
 
 
 const routes: Routes = [
@@ -45,6 +46,13 @@ const routes: Routes = [
   { 
     path: 'priceListUser', 
     component: PriceListUserComponent, 
+  },
+  { 
+    path: 'stations', 
+    component: AdminStationsComponent, 
+    canActivate: [AuthGuard]
+
+
   }
 ];
 
