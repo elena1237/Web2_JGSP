@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule , FormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { AgmCoreModule } from '@agm/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,6 +22,7 @@ import { NgbdDatepickerComponent } from './ngb-datepicker/ngb-datepicker.compone
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { PriceListUserComponent } from './price-list-user/price-list-user.component';
 import { AdminStationsComponent } from './admin-stations/admin-stations.component';
+import { MapComponent } from './map/map.component';
 
 
 @NgModule({
@@ -38,6 +40,7 @@ import { AdminStationsComponent } from './admin-stations/admin-stations.componen
     NgbdDatepickerComponent,
     PriceListUserComponent,
     AdminStationsComponent,
+    MapComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,8 +49,17 @@ import { AdminStationsComponent } from './admin-stations/admin-stations.componen
     HttpClientModule,
     FormsModule,
     NgbModule.forRoot(),
+    AgmCoreModule.forRoot({apiKey: 'AIzaSyDnihJyw_34z5S1KZXp90pfTGAqhFszNJk'}),
   ],
   bootstrap: [AppComponent],
   providers: [LoginService,HttpClientModule, BuyticketService, AdminScheduleService]
 })
 export class AppModule { }
+
+
+
+
+
+
+  
+ 

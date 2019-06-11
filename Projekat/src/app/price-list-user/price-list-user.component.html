@@ -14,7 +14,6 @@
     <tbody>
         <tr *ngFor="let priceList of priceLists">
             <ng-container *ngFor="let tt of tickets; let i=index" >
-                
                 <td *ngIf="priceList.TicketTypeId==tt.Id">{{tt.Name}}</td>
             </ng-container>
             <ng-container *ngFor="let pt of passengers; let i=index" >
