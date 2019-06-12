@@ -20,6 +20,7 @@ export class MapComponent implements OnInit {
   markerInfo: MarkerInfo;
   public polyline: Polyline;
   public zoom: number;
+  public message: string;
   public coordinate: Coordinate=new Coordinate();
   public station:Station=new Station();
   public lines:Line[]=[];
@@ -40,13 +41,7 @@ export class MapComponent implements OnInit {
       this.stationService.getAllStations().subscribe((data)=>{
         Object.assign(this.stations, data);
       });
-      // for(let s of this.stations)
-      // {
-
-      //     this.geoLocation = new GeoLocation(s.Coordinate.X,s.Coordinate.Y);
-      //     this.polyline.addLocation(this.geoLocation);
-          
-      // }
+     
 
 
   }
@@ -63,10 +58,20 @@ export class MapComponent implements OnInit {
     this.station.Lines=this.lines;
     
     this.stationService.createStation(this.station).subscribe(  
-      () => {  
+      (data) => {  
+        if(data){
+          this.message = "Uspesno dodata stanica";
+          
+        }
+        else{
+          this.message = "Neuspesno dodavanje staice";
+        }
         
       }  
     );
+
+    window.location.reload();
+
   }
 
 
@@ -78,6 +83,7 @@ export class MapComponent implements OnInit {
     this.station.Coordinate=this.coordinate;
 
     console.log(this.polyline)
+    this.message="";
   }
 
 }

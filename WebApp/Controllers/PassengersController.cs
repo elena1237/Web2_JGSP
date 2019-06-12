@@ -83,13 +83,15 @@ namespace WebApp.Controllers
 
         // POST: api/Passengers
         [ResponseType(typeof(Passenger))]
-        public IHttpActionResult PostPassenger(Passenger passenger)
+        [Route("InsertPassenger")]
+
+        public IHttpActionResult PostPassenger([FromBody]Passenger passenger)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-
+            
             db.Passengers.Add(passenger);
 
             try
@@ -107,6 +109,8 @@ namespace WebApp.Controllers
                     throw;
                 }
             }
+
+            //passenger.PasswordHash = passenger.Password.GetHashCode();
 
             return CreatedAtRoute("DefaultApi", new { id = passenger.Id }, passenger);
         }

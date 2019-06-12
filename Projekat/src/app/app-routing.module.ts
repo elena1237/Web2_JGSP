@@ -9,6 +9,7 @@ import {AuthGuard} from './login/auth/auth.guard';
 import { AdminScheduleComponent } from './admin-schedule/admin-schedule.component';
 import { PriceListUserComponent } from './price-list-user/price-list-user.component';
 import { AdminStationsComponent } from './admin-stations/admin-stations.component';
+import { RegistrationComponent } from './registration/registration.component';
 
 
 const routes: Routes = [
@@ -16,6 +17,12 @@ const routes: Routes = [
   { 
     path: 'login', 
     component: LoginComponent, 
+   // canActivate: [AuthGuard]
+
+  },
+  { 
+    path: 'registration', 
+    component: RegistrationComponent, 
    // canActivate: [AuthGuard]
 
   },

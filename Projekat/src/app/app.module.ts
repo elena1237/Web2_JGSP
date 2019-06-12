@@ -23,6 +23,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { PriceListUserComponent } from './price-list-user/price-list-user.component';
 import { AdminStationsComponent } from './admin-stations/admin-stations.component';
 import { MapComponent } from './map/map.component';
+import { RegistrationComponent } from './registration/registration.component';
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import { MapComponent } from './map/map.component';
     PriceListUserComponent,
     AdminStationsComponent,
     MapComponent,
+    RegistrationComponent,
   ],
   imports: [
     BrowserModule,
