@@ -45,6 +45,8 @@ export class LoginService {
   logout(): void {
     this.isLoggedIn = false;
     localStorage.removeItem('jwt');
+    localStorage.removeItem('role');
+
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

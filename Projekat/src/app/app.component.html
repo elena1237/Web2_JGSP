@@ -23,9 +23,9 @@
             <a routerLink="/schedule" data-toggle="collapse">
               <img src="assets/images/bus.jpg" height="200px" width="200px" class="img-circle person" alt="Random Name">
             </a>
-            <p class="text-center"><strong>Red voznje-Admin</strong></p><br>
-            <a routerLink="/admin-schedule" data-toggle="collapse">
-              <img src="assets/images/bus.jpg" height="200px" width="200px" class="img-circle person" alt="Random Name">
+            <p *ngIf="show" class="text-center"><strong>Red voznje-Admin</strong></p><br>
+            <a *ngIf="show" routerLink="/admin-schedule" data-toggle="collapse">
+              <img *ngIf="show" src="assets/images/bus.jpg" height="200px" width="200px" class="img-circle person" alt="Random Name">
             </a>
           </div>
           <div class="col-sm-4">
@@ -36,9 +36,10 @@
           </div>
 
           <div class="col-sm-4">
-              <p class="text-center"><strong>Cenovnik-Admin</strong></p><br>
-              <a routerLink="/priceList" data-toggle="collapse">
-                <img src="assets/images/priceList.png" height="200px" width="200px" class="img-circle person" alt="Random Name">
+          
+              <p *ngIf="show" class="text-center"><strong>Cenovnik-Admin</strong></p><br>
+              <a *ngIf="show" routerLink="/priceList" data-toggle="collapse">
+                <img *ngIf="show" src="assets/images/priceList.png" height="200px" width="200px" class="img-circle person" alt="Random Name">
               </a>
               <div class="col-sm-4">
                   <p class="text-center"><strong>Cenovnik</strong></p><br>
@@ -54,10 +55,12 @@
 
                  </a>
             </div> 
-</div>
+            <button (click)="logout()" routeLink="/login">Logout</button>
 
-<app-footer></app-footer>
-  
+</div>
 <router-outlet></router-outlet>
+<br/>
+<br/>
+  
 
 

@@ -5,6 +5,7 @@ import { TicketType } from '../ticket-type';
 import { Passenger } from '../models/Passenger';
 import { DatePipe } from '@angular/common';
 import { RegistrationService } from '../registration.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-registration',
@@ -22,6 +23,7 @@ export class RegistrationComponent implements OnInit {
   public password2:string;
   public email:string;
   public passenger: Passenger = new Passenger();
+  selectedFile: File
 
   PassType:Array<Object> = [
     {name: "Student"},
@@ -56,19 +58,23 @@ registrationForm = this.fb.group({
 
 
 });
-  constructor(private fb:FormBuilder,private registrationService: RegistrationService) { }
+  constructor(private fb:FormBuilder,private registrationService: RegistrationService,private http: HttpClient) { }
 
   ngOnInit() {
     
 
   }
+  onFileChanged(event) {
+    this.selectedFile = event.target.files[0]
+  }
+
 
   public Registrate()
   {
 
     this.passenger.FirstName = this.registrationForm.controls['ime'].value;
     this.passenger.LastName = this.registrationForm.controls['prezime'].value;
-
+    this.passenger.ImageUrl = this.selectedFile.name;
     this.passenger.BirthDate = new DatePipe('en-US').transform(this.Students.dob,'dd/MM/yyyy');
     this.passenger.PassengerType = new PassengerType();
     this.passenger.PassengerType.Name = this.registrationForm.controls['pass'].value;

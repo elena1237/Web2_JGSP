@@ -50,7 +50,16 @@
                   <option *ngFor="let item of PassType" [value] = "item.name">{{item.name}}</option>
               </select>
               </label><br>
-              
+              <form>
+              <label> Dodaj sliku:
+                  <input
+                  style="display: none"
+                  type="file" (change)="onFileChanged($event)"
+                  #fileInput>
+                <button (click)="fileInput.click()">Select File</button>
+                
+              </label>
+              </form>
            <button type="submit">Registrate</button>
            
         </form>

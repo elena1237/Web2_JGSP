@@ -32,14 +32,22 @@ export class LoginComponent {
 
   login() {
     this.authService.login(this.loginForm.value).subscribe((data) => {
-      this.setMessage();
-      console.log(data);
-     
+      if(data === "Admin"){
+        this.router.navigate(["admin"]);
+      }
+      else if (data === "AppUser") {
+        this.router.navigate(["user"]);
+      }
+      else{
+       // this.router.navigate(["unauthorizedUser", "logIn"]);
+        this.message = "Pogresan email ili loznika";
+      }
     });
   }
 
   logout() {
     this.authService.logout();
+    
     this.setMessage();
   }
 }

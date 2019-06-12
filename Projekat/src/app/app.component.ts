@@ -33,5 +33,11 @@ export class AppComponent implements OnInit{
 
   }
 
+  logout(): void {
+    localStorage.removeItem('jwt');
+    localStorage.removeItem('role');
+    window.location.reload();
+  }
+
 }
 

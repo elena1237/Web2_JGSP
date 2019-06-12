@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using WebApp.Models;
 using WebApp.Persistence;
@@ -102,6 +103,7 @@ namespace WebApp.Controllers
 
         public IHttpActionResult PostPassenger([FromBody]Passenger passenger)
         {
+            ApplicationDbContext context = new ApplicationDbContext();
           PassengerType pt =  db.PassengerTypes.GetAll().FirstOrDefault(x => x.Name == passenger.PassengerType.Name);
           passenger.PassengerType = pt;
 
@@ -110,9 +112,18 @@ namespace WebApp.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = new Passenger() { UserName = passenger.Email, Email = passenger.Email, PasswordHash = ApplicationUser.HashPassword(passenger.Password), Password = ApplicationUser.HashPassword(passenger.Password), FirstName = passenger.FirstName, LastName = passenger.LastName, BirthDate = passenger.BirthDate, Address = passenger.Address, Approved = passenger.Approved, Role = "AppUser"};
-            
-            db.Passengers.Add(user);
+            //var user = new Passenger() { UserName = passenger.Email, Email = passenger.Email, PasswordHash = ApplicationUser.HashPassword(passenger.Password), Password = ApplicationUser.HashPassword(passenger.Password), FirstName = passenger.FirstName, LastName = passenger.LastName, BirthDate = passenger.BirthDate, Address = passenger.Address, Approved = passenger.Approved, Role = "AppUser"};
+            var userStore = new UserStore<ApplicationUser>(context);
+            var userManager = new UserManager<ApplicationUser>(userStore);
+        
+            if (passenger.Role == "AppUser")
+            {
+                var user = new Passenger() { UserName = passenger.Email, Email = passenger.Email, PasswordHash = ApplicationUser.HashPassword(passenger.Password), Password = ApplicationUser.HashPassword(passenger.Password), FirstName = passenger.FirstName, LastName = passenger.LastName, BirthDate = passenger.BirthDate, Address = passenger.Address, Approved = passenger.Approved, Role = "AppUser" };
+                userManager.Create(user);
+                userManager.AddToRole(user.Id, "AppUser");
+            }
+           // db.Passengers.Add(user);
+  
 
             try
             {
