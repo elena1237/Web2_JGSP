@@ -277,6 +277,10 @@
     <Compile Include="Migrations\201906102258379_migracija.Designer.cs">
       <DependentUpon>201906102258379_migracija.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906121810284_pass.cs" />
+    <Compile Include="Migrations\201906121810284_pass.Designer.cs">
+      <DependentUpon>201906121810284_pass.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -425,6 +429,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906102258379_migracija.resx">
       <DependentUpon>201906102258379_migracija.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906121810284_pass.resx">
+      <DependentUpon>201906121810284_pass.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -35,13 +35,6 @@ namespace WebApp.Models
         [StringLength(30)]
         public string Role { get; set; }
 
-        [Required]
-        [StringLength(30)]
-        public string Email { get; set; }
-
-        [Required]
-        [StringLength(30)]
-        public string Password { get; set; }
 
 
 

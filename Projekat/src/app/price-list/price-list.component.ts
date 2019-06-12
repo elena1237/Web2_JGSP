@@ -118,7 +118,10 @@ export class PriceListComponent implements OnInit {
 
        }
 
-       this.priceListService.getTicketById(ticketId).subscribe(data => {this.ticket=data});
+       this.priceListService.getTicketById(ticketId).subscribe(data => {
+         this.ticket=data
+        
+        });
        console.log(this.ticket.Id);
   
         this.ticket.Price = basePrice;

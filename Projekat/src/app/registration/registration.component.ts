@@ -70,11 +70,17 @@ registrationForm = this.fb.group({
     this.passenger.LastName = this.registrationForm.controls['prezime'].value;
 
     this.passenger.BirthDate = new DatePipe('en-US').transform(this.Students.dob,'dd/MM/yyyy');
-    this.passenger.PassengerType = this.registrationForm.controls['pass'].value;
+    this.passenger.PassengerType = new PassengerType();
+    this.passenger.PassengerType.Name = this.registrationForm.controls['pass'].value;
+   
     this.passenger.Address = this.registrationForm.controls['adresa'].value;
     this.passenger.UserName = this.registrationForm.controls['email'].value;
     this.passenger.Role = "AppUser";
-    if(this.password == this.password2)
+    let passwordic = this.registrationForm.controls['password'].value;
+    
+    if(passwordic == this.registrationForm.controls['password2'].value)
+      this.passenger.Password = passwordic;
+
     this.passenger.Email = this.registrationForm.controls['email'].value;
     
 

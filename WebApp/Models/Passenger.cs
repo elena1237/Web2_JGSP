@@ -13,6 +13,9 @@ namespace WebApp.Models
         public PassengerType PassengerType { get; set; }
         public string ImageUrl { get; set; }
 
+        [Required]
+        public string Password { get; set; }
+
         //public Passenger(string firstname, string lastname, string adress, string role, string birthdate, bool app,PassengerType pt,string img,string usrname,bool appr,string em)
         //{
         //    FirstName = firstname;

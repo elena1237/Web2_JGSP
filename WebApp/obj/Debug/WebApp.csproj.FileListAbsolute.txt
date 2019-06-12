@@ -597,3 +597,4 @@ C:\Users\user\Desktop\Web2_JGSP\WebApp\obj\Debug\WebApp.Migrations.ajmsrecomoja.
 C:\Users\user\Desktop\Web2_JGSP\WebApp\obj\Debug\WebApp.csproj.GenerateResource.Cache
 C:\Users\user\Desktop\Web2_JGSP\WebApp\obj\Debug\WebApp.Migrations.mig.resources
 C:\Users\user\Desktop\Web2_JGSP\WebApp\obj\Debug\WebApp.Migrations.migracija.resources
+C:\Users\user\Desktop\Web2_JGSP\WebApp\obj\Debug\WebApp.Migrations.pass.resources

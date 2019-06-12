@@ -12,6 +12,11 @@ import {
 export class AuthGuard implements CanActivate, CanActivateChild {
   constructor(private router: Router) { }
 
+  canActivateAppUser(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {    
+    if (localStorage.role === 'AppUser') 
+      return true;
+    }
+
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {    
     if (localStorage.role === 'Admin') {
       return true;

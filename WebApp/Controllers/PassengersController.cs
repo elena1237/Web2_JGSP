@@ -8,6 +8,8 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 using WebApp.Models;
 using WebApp.Persistence;
 using WebApp.Persistence.Repository;
@@ -18,6 +20,18 @@ namespace WebApp.Controllers
     [RoutePrefix("Api/Passengers")]
     public class PassengersController : ApiController
     {
+        private ApplicationUserManager _userManager;
+        public ApplicationUserManager UserManager
+        {
+            get
+            {
+                return _userManager ?? Request.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            }
+            private set
+            {
+                _userManager = value;
+            }
+        }
 
         public IUnitOfWork db { get; set; }
 
@@ -82,17 +96,23 @@ namespace WebApp.Controllers
         }
 
         // POST: api/Passengers
+        [AllowAnonymous]
         [ResponseType(typeof(Passenger))]
         [Route("InsertPassenger")]
 
         public IHttpActionResult PostPassenger([FromBody]Passenger passenger)
         {
+          PassengerType pt =  db.PassengerTypes.GetAll().FirstOrDefault(x => x.Name == passenger.PassengerType.Name);
+          passenger.PassengerType = pt;
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
+
+            var user = new Passenger() { UserName = passenger.Email, Email = passenger.Email, PasswordHash = ApplicationUser.HashPassword(passenger.Password), Password = ApplicationUser.HashPassword(passenger.Password), FirstName = passenger.FirstName, LastName = passenger.LastName, BirthDate = passenger.BirthDate, Address = passenger.Address, Approved = passenger.Approved, Role = "AppUser"};
             
-            db.Passengers.Add(passenger);
+            db.Passengers.Add(user);
 
             try
             {
@@ -112,7 +132,7 @@ namespace WebApp.Controllers
 
             //passenger.PasswordHash = passenger.Password.GetHashCode();
 
-            return CreatedAtRoute("DefaultApi", new { id = passenger.Id }, passenger);
+            return CreatedAtRoute("DefaultApi", new { controller = "passenger", id = passenger.Id }, passenger);
         }
 
         // DELETE: api/Passengers/5

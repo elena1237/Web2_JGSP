@@ -5,5 +5,6 @@ import { ApplicationUser } from '../application-user';
       Approved:boolean;
       PassengerType: PassengerType;
       ImageUrl: string;
+      Password: string;
 }
             
