@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs/internal/Observable';
 import { BuyticketService } from '../buyticket.service';
 import { Ticket } from '../ticket';
+import { Email } from '../models/Email';
 
 @Component({
   selector: 'app-buy-ticket',
@@ -10,24 +11,21 @@ import { Ticket } from '../ticket';
   styleUrls: ['./buy-ticket.component.css']
 })
 export class BuyTicketComponent implements OnInit {
+  public email:Email = new Email;
+  
 
-   
-  // employeeForm: any;  
-  
-  // allEmployees: Observable<Ticket[]>;  
-  // employeeIdUpdate = null;  
-  // massage = null;  
-  
-  constructor(private buyTicketService:BuyticketService) { }  
+  buyForm = this.fb.group({
+    email: ['', Validators.required]
+  })
+  constructor(private buyTicketService:BuyticketService, private fb:FormBuilder) { }  
   
   ngOnInit() {  
-    // this.employeeForm = this.formbulider.group({  
-    //   TimeIssued:
+    
   } 
-    // this.loadAllEmployees();  
-  createTicket(ticket: Ticket) { 
-
-        this.buyTicketService.createTicketNotRegisteredUser().subscribe(  
+      
+  createTicket() { 
+        this.email.Value=this.buyForm.controls['email'].value;
+        this.buyTicketService.createTicketNotRegisteredUser(this.email).subscribe(  
           () => {  
             
           }  
@@ -36,46 +34,7 @@ export class BuyTicketComponent implements OnInit {
   }  
   
   
-//   loadAllEmployees() {  
-//     this.allEmployees = this.employeeService.getAllEmployee();  
-//   }  
-//   onFormSubmit() {  
-//     this.dataSaved = false;  
-//     const employee = this.employeeForm.value;  
-//     this.CreateEmployee(employee);  
-//     this.employeeForm.reset();  
-//   }  
-//     
+   
   
-//     
-//   CreateEmployee(employee: Employee) {  
-//     if (this.employeeIdUpdate == null) {  
-//       this.employeeService.createEmployee(employee).subscribe(  
-//         () => {  
-//           this.dataSaved = true;  
-//           this.massage = 'Record saved Successfully';  
-//           this.loadAllEmployees();  
-//           this.employeeIdUpdate = null;  
-//           this.employeeForm.reset();  
-//         }  
-//       );  
-//     } else {  
-//       employee.EmpId = this.employeeIdUpdate;  
-//       this.employeeService.updateEmployee(employee).subscribe(() => {  
-//         this.dataSaved = true;  
-//         this.massage = 'Record Updated Successfully';  
-//         this.loadAllEmployees();  
-//         this.employeeIdUpdate = null;  
-//         this.employeeForm.reset();  
-//       });  
-//     }  
-//   }   
-//    
-//   }  
-// }  
-//   resetForm() {  
-//     this.employeeForm.reset();  
-//     this.massage = null;  
-//     this.dataSaved = false;  
-//   }  
+
 

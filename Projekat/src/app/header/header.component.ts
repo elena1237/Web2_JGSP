@@ -10,6 +10,21 @@ export class HeaderComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.method();
   }
 
+  public show: boolean = false
+
+  title = 'Projekat';
+
+  public method()
+  {
+      if(localStorage.role == 'Admin')
+      {
+        this.show = true;
+
+      }
+
+
+  }
 }

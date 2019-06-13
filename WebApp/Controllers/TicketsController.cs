@@ -4,6 +4,7 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Mail;
 using System.Web.Http;
 using System.Web.Http.Description;
 using WebApp.Models;
@@ -101,30 +102,60 @@ namespace WebApp.Controllers
 
 
         // POST: api/Tickets
-        [HttpPost]
+        
         [Route("InsertTimeTicket")]
-        [ResponseType(typeof(BaseTicket))]
-        public IHttpActionResult PostTimeTicket()
+        [ResponseType(typeof(bool))]
+        [AllowAnonymous]
+        public IHttpActionResult PostTimeTicket(Email email)
         {
-            if (!ModelState.IsValid)
+            
+            TicketType timeTicket = db.TicketTypes.Find(x => x.Name == "Vremenska").FirstOrDefault();
+            
+            //ticket.TicketType.Id = timeTicket.Id;
+            Ticket ticket = new Ticket(timeTicket,null,true, (DateTime.Now).ToString());
+
+            db.Tickets.Add(ticket);
+            db.Complete();
+
+            DateTime validTo = DateTime.Now.AddHours(1);
+
+            try
             {
-                return BadRequest(ModelState);
+                SendEmail(email.Value, "GSP Service, kupovina karte.", $"Postovani, Vasa karta traje sat vremena i istice {validTo}.\n  Hvala na koriscenju usluga");
+
+                return Ok(true);
+
+            }
+            catch (Exception)
+            {
+                return Ok(false);
             }
 
 
-            //PassengerType pt = new PassengerType();
-            //Passenger pass = new Passenger("UserFirst", "UserLast", "Address", "Role", "10.05.1994.", false,pt,"img","UserName",false,"user@gmail.com");
-            //TicketType tt = new TicketType();
-            BaseTicket timeticket = new BaseTicket();
-            timeticket.IsValid = true;
-            timeticket.TimeIssued = (DateTime.Now).ToString();
+        }
 
 
-            db.Tickets.Add(timeticket);
-            db.Complete();
 
-            return CreatedAtRoute("DefaultApi", new { controller = "timeticket", id = timeticket.Id }, timeticket);
-           // return CreatedAtRoute("DefaultApi", new { id = timeticket.Id }, timeticket);
+
+        private void SendEmail(string recipient, string subject, string body)
+        {
+            MailMessage mail = new MailMessage();
+            SmtpClient smtpServer = new SmtpClient("smtp.gmail.com");
+
+            try
+            {
+                mail.To.Add(recipient);
+            }
+            catch (Exception e) { }
+
+            mail.Subject = subject;
+            mail.Body = body;
+            mail.From = new MailAddress("titovrentavehicle@gmail.com");
+            smtpServer.Port = 587;
+            smtpServer.Credentials = new NetworkCredential("titovrentavehicle@gmail.com", "drugtito");
+            smtpServer.EnableSsl = true;
+
+            smtpServer.Send(mail);
         }
 
         [HttpDelete]

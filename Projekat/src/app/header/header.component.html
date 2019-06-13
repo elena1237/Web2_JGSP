@@ -19,9 +19,22 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="/schedule">Red voznje</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" routerLink="/priceList">Cenovnik</a>
+        <li *ngIf="show" class="nav-item">
+            <a class="nav-link" routerLink="/priceList">Cenovnik-Admin</a>
           </li>
+          <li  class="nav-item">
+              <a  class="nav-link" routerLink="/admin-schedule">
+              <p *ngIf="show">
+                  Red voznje-Admin
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
+                <a *ngIf="show" class="nav-link" routerLink="/lines">Linije-Admin</a>
+              </li>
+              <li class="nav-item">
+                  <a *ngIf="show" class="nav-link" routerLink="/stations">Stanice-Admin</a>
+                </li>
   
       </ul>
     </div>

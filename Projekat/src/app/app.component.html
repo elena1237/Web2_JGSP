@@ -1,84 +1,86 @@
+
 <app-header></app-header>
-<div class="jumbotron" style="background-color: #fff; height: calc(150vh);">
+<div style="background-color: rgb(201, 162, 116); height: calc(150vh);">
+<div class="jumbotron" style="background-color: rgb(201, 162, 116); height: calc(150vh);">
  
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
       <div class="item active">
-        <img src="assets/images/walp2.jpg" alt="city"/>
+        <img src="assets/images/slika.jpg" alt="city"/>
         <div class="carousel-caption">
           <h1>JAVNO GRADSKO SAOBRAĆAJNO PREDUZEĆE</h1>
         </div> 
       </div>
      
   </div>
-  <div id="myCarousel" class="carousel slide" data-ride="carousel">
-      <!-- Indicators -->
-      <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+  <div class="jumbotron" id="myCarousel"  class="carousel slide" data-ride="carousel">
      
-      </ol>
       <div class="row">
-          <div class="col-sm-4">
+          <div class="col-sm-3">
             <p class="text-center"><strong>Red voznje</strong></p><br>
             <a routerLink="/schedule" data-toggle="collapse">
-              <img src="assets/images/bus.jpg" height="200px" width="200px" class="img-circle person" alt="Random Name">
+              <img src="assets/images/bus.jpg" height="200px" style="border-radius: 50%" width="200px" class="img-circle person" alt="Random Name">
             </a>
+            </div>
+            <!-- <div class="col-sm-4">
             <p *ngIf="show" class="text-center"><strong>Red voznje-Admin</strong></p><br>
             <a *ngIf="show" routerLink="/admin-schedule" data-toggle="collapse">
               <img *ngIf="show" src="assets/images/bus.jpg" height="200px" width="200px" class="img-circle person" alt="Random Name">
             </a>
-          </div>
-          <div class="col-sm-4">
+          </div> -->
+          <div class="col-sm-3">
             <p class="text-center"><strong>Kupi kartu</strong></p><br>
             <a routerLink="/buyTicket" data-toggle="collapse">
-              <img src="assets/images/ticket.png" class="img-circle person" alt="Random Name">
+              <img src="assets/images/ticket.png" class="img-circle person" style="border-radius: 50%" alt="Random Name">
             </a>
           </div>
 
-          <div class="col-sm-4">
+          <!-- <div class="col-sm-4">
           
               <p *ngIf="show" class="text-center"><strong>Cenovnik-Admin</strong></p><br>
               <a *ngIf="show" routerLink="/priceList" data-toggle="collapse">
                 <img *ngIf="show" src="assets/images/priceList.png" height="200px" width="200px" class="img-circle person" alt="Random Name">
               </a>
-              <div class="col-sm-4">
+              </div> -->
+              <div class="col-sm-3">
                   <p class="text-center"><strong>Cenovnik</strong></p><br>
                   <a routerLink="/priceListUser" data-toggle="collapse">
-                    <img src="assets/images/priceList.png" height="200px" width="200px" class="img-circle person" alt="Random Name">
+                    <img src="assets/images/priceList.png" height="200px" style="border-radius: 50%" width="200px" class="img-circle person" alt="Random Name">
                   </a>
             </div>   
-            <div *ngIf="show" class="col-sm-4">
+            <!-- <div *ngIf="show" class="col-sm-4">
 
-                <p   class="text-center"><strong>Stanice</strong></p>
-                 <a   routerLink="/stations" data-toggle="collapse">Stanice
+                <p   ><strong>Stanice</strong></p>
+                 <a   routerLink="/stations" data-toggle="collapse">
                  <img src="assets/images/busic.png" height="200px" width="200px" class="img-circle person" alt="Random Name">
 
                  </a>
-            </div> 
-            <div *ngIf="show" class="col-sm-4">
+            </div>  -->
+            <!-- <div *ngIf="show" class="col-sm-4">
 
-              <p   class="text-center"><strong>Linije</strong></p>
-               <a   routerLink="/lines" data-toggle="collapse">Linije
+              <p   class="text-left"><strong>Linije</strong></p>
+               <a   routerLink="/lines" data-toggle="collapse">
                <img src="assets/images/busic.png" height="200px" width="200px" class="img-circle person" alt="Random Name">
 
                </a>
-          </div> 
-          <div class="col-sm-4">
+          </div>  -->
+          <div class="col-sm-3">
 
-            <p   class="text-center"><strong>Mreza linija</strong></p>
-             <a   routerLink="/userlines" data-toggle="collapse">Mreza linija
-             <img src="assets/images/busic.png" height="200px" width="200px" class="img-circle person" alt="Random Name">
+            <p><strong>Mreza linija</strong></p>
+             <a routerLink="/userlines" data-toggle="collapse">
+             <img src="assets/images/busic.png" height="200px" style="border-radius: 50%" width="200px" class="img-circle person" alt="Random Name">
 
              </a>
-        </div> 
-
-
-          
-            <button (click)="logout()" routeLink="/login">Logout</button>
-
+        </div>
 </div>
+
 <router-outlet></router-outlet>
 <br/>
+<label>
+    <button (click)="logout()" routeLink="/login">Logout</button>
+  
+</label>  
+</div>
 <br/>
   
 

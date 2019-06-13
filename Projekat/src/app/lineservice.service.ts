@@ -25,9 +25,11 @@ export class LineserviceService {
     return this.client.get<Line[]>(this.url + '/AllLines');  
   }
 
-  public delete(id: number):Observable<Line>{
-    return this.client.delete<Line>(this.url + '/DeleteLine' + `/${id}`);
-}
+  public delete(scheduleId: number): Promise<number> {  
+    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json'}) };  
+    return this.client.delete<number>(this.url + '/DeleteLine?id=' +scheduleId,  
+ httpOptions).toPromise();  
+  } 
 
 public updateLine(ticketType: Line): Observable<Line> {  
   const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json'}) };  

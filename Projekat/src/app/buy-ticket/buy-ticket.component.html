@@ -1,14 +1,10 @@
 <div>
   <h3> Kupovina vremenske karte</h3>
-    <a href="#success" data-toggle="collapse">
-    <button type="submit" (click)="createTicket()" class="btn btn-primary">Kupi</button>
-    </a>
-
-
-    <div id="success" class="collapse">
-      <p>Vasa karta vazi narednih sat vremena</p>
-    </div>
-  </div>
-  <div class="container">  
-  
-  </div>  
+  <form [formGroup]="buyForm" (ngSubmit)="createTicket()">
+      <label>
+          Unesite email:
+          <input type="text" formControlName="email" placeholder="example@mail.com" />
+        </label>
+       <button type="submit" class="btn btn-warning">Kupi</button>
+      
+    </form>

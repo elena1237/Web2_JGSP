@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';  
 import { Observable } from 'rxjs';  
 import {Ticket} from './ticket';
+import { Email } from './models/Email';
 
 @Injectable({
   providedIn: 'root'
@@ -17,11 +18,11 @@ export class BuyticketService {
   getTicketById(employeeId: string): Observable<Ticket> {  
     return this.http.get<Ticket>(this.url + '/GetById/' + employeeId);  
   }  
-  createTicketNotRegisteredUser(): Observable<Ticket> {  
+  createTicketNotRegisteredUser(email:Email) : Observable<Email> {  
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json'}) };  
-    return this.http.post<Ticket>(this.url + '/InsertTimeTicket/',  
-    httpOptions);  
-  }  
+    return this.http.post<Email>(this.url + '/InsertTimeTicket/',  
+    email, httpOptions);  
+  }
   createTicket(employee: Ticket): Observable<Ticket> {  
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json'}) };  
     return this.http.post<Ticket>(this.url + '/InsertTicket/',  

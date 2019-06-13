@@ -111,18 +111,17 @@ export class AdminLinesComponent implements OnInit {
 
   }
 
-  public DeleteLine()
+  public  DeleteLine()
   {
+    if(this.selectedLine != null){
 
-    this.lineService.delete(this.selectedLine.Id).subscribe((data) => {
-      if (data) {
-        this.message = "Uspesno ste obrisali selektovanu liniju.";
-        this.selectedLine = null;
-      }
-      else {
-        this.message = "Greska prilikom brisanja zadate linije.";
-      }
-    });
+        this.lineService.delete(this.selectedLine.Id);
+        this.message = "Uspesno ste obrisali Liniju" + this.selectedLine.LineNumber;
+    }else
+      this.message = "Uspesno ste niste obrisali Liniju" + this.selectedLine.LineNumber;
+
+    // window.location.reload();
+
   }
   }
 
