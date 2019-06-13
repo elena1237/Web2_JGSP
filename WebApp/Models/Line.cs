@@ -15,8 +15,11 @@ namespace WebApp.Models
         [Range(1, 100)]
         public int LineNumber { get; set; }
         public int TypeOfLine { get; set; }
-        //[JsonIgnore]
+       
         public List<Station> Stations { get; set; }
+
+        [Timestamp]
+        public byte[] RowVersion { get; set; }
 
 
     }

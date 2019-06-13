@@ -56,12 +56,12 @@
         <div id="update" class="collapse" >
             <form [formGroup]="updateForm" (ngSubmit)="ChangeLine()">
                 <label>
-                    Line Id:
+                  Broj linije:
                     <input mdInput type="text"  formControlName="LineNumber" [(ngModel)]="selectedLine.LineNumber">
                   </label>
           
                   <label>
-                      Departure:
+                    Tip linije:
                       <input mdInput type="text" class="form-control" formControlName="TypeOfLine" [(ngModel)]="selectedLine.TypeOfLine">
                     </label>
                  <button type="submit" >Update</button>

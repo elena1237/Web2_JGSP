@@ -145,33 +145,44 @@ namespace WebApp.Controllers
         [Route("UpdateLine/{id}")]
         public IHttpActionResult PutLine(int id,[FromBody] Line line)
         {
+            int result = 0;
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != line.Id)
-            {
-                return BadRequest();
-            }
+            //if (id != line.Id)
+            //{
+            //    return BadRequest();
+            //}
 
             db.Lines.Update(line);
 
-            try
+            result = db.Complete();
+            if(result==0)
             {
-                db.Complete();
-            }
-            catch (DbUpdateConcurrencyException)
+                return Conflict();
+            } else if(result==-1)
             {
-                if (!LineExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return BadRequest("Podatak je menjan u medjuvremenu, molimo pokusajte ponovo.");
             }
+
+
+            //try
+            //{
+            //    db.Complete();
+            //}
+            //catch (DbUpdateConcurrencyException)
+            //{
+            //    if (!LineExists(id))
+            //    {
+            //        return NotFound();
+            //    }
+            //    else
+            //    {
+            //        throw;
+            //    }
+            //}
 
             return StatusCode(HttpStatusCode.NoContent);
         }
