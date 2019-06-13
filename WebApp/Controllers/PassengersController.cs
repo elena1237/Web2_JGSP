@@ -118,7 +118,7 @@ namespace WebApp.Controllers
         
             if (passenger.Role == "AppUser")
             {
-                var user = new Passenger() { UserName = passenger.Email, Email = passenger.Email, PasswordHash = ApplicationUser.HashPassword(passenger.Password), Password = ApplicationUser.HashPassword(passenger.Password), FirstName = passenger.FirstName, LastName = passenger.LastName, BirthDate = passenger.BirthDate, Address = passenger.Address, Approved = passenger.Approved, Role = "AppUser" };
+                var user = new Passenger() { UserName = passenger.Email, Email = passenger.Email, PasswordHash = ApplicationUser.HashPassword(passenger.Password), Password = ApplicationUser.HashPassword(passenger.Password), FirstName = passenger.FirstName, LastName = passenger.LastName, BirthDate = passenger.BirthDate, Address = passenger.Address, Approved = passenger.Approved, Role = "AppUser",ImageUrl=passenger.ImageUrl };
                 userManager.Create(user);
                 userManager.AddToRole(user.Id, "AppUser");
             }

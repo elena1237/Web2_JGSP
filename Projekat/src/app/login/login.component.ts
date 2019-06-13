@@ -33,14 +33,15 @@ export class LoginComponent {
   login() {
     this.authService.login(this.loginForm.value).subscribe((data) => {
       if(data === "Admin"){
-        this.router.navigate(["admin"]);
+        this.message = "Uspjesno prijavljen admin";
       }
       else if (data === "AppUser") {
-        this.router.navigate(["user"]);
+        this.message = "Uspjesno prijavljen registrovani korisnik";
       }
       else{
-       // this.router.navigate(["unauthorizedUser", "logIn"]);
+       
         this.message = "Pogresan email ili loznika";
+        
       }
     });
   }

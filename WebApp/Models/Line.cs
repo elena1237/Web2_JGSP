@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using Newtonsoft.Json;
 
 namespace WebApp.Models
 {
@@ -14,6 +15,7 @@ namespace WebApp.Models
         [Range(1, 100)]
         public int LineNumber { get; set; }
         public int TypeOfLine { get; set; }
+        //[JsonIgnore]
         public List<Station> Stations { get; set; }
 
 

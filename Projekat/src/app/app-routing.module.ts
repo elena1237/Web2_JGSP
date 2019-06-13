@@ -10,6 +10,8 @@ import { AdminScheduleComponent } from './admin-schedule/admin-schedule.componen
 import { PriceListUserComponent } from './price-list-user/price-list-user.component';
 import { AdminStationsComponent } from './admin-stations/admin-stations.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { AdminLinesComponent } from './admin-lines/admin-lines.component';
+import { GridLinesAdminComponent } from './grid-lines-admin/grid-lines-admin.component';
 
 
 const routes: Routes = [
@@ -61,6 +63,16 @@ const routes: Routes = [
     canActivate: [AuthGuard]
 
 
+  },
+
+  { 
+    path: 'lines', 
+    component: AdminLinesComponent, 
+    canActivate: [AuthGuard]
+  },
+  { 
+    path: 'userlines', 
+    component: GridLinesAdminComponent, 
   }
 ];
 

@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
+using Newtonsoft.Json;
 
 namespace WebApp.Models
 {
@@ -19,7 +20,7 @@ namespace WebApp.Models
         [Required]
         [StringLength(40)]
         public string Address { get; set; }
-
+        [JsonIgnore]
         public List<Line> Lines { get; set; }
 
     }

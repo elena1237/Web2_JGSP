@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { Observable, pipe, of } from 'rxjs';
+import { Observable, pipe, of, observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { User } from './user';
 @Injectable({
@@ -16,8 +16,9 @@ export class LoginService {
   constructor(private http: HttpClient) { }
 
   login(user: User): Observable<any> {
-    return this.http.post<any>(this.loginUrl, `username=`+ user.username +`&password=`+ user.password + `&grant_type=password`, { 'headers': { 'Content-type': 'x-www-form-urlencoded' } }).pipe(
-      map(res => {
+    return Observable.create((observable) => {
+    /* return*/ this.http.post<any>(this.loginUrl, `username=`+ user.username +`&password=`+ user.password + `&grant_type=password`, { 'headers': { 'Content-type': 'x-www-form-urlencoded' } }).subscribe(
+      res => {
         console.log(res.access_token);
         this.isLoggedIn=true;
         let jwt = res.access_token;
@@ -35,11 +36,27 @@ export class LoginService {
 
         localStorage.setItem('jwt', jwt)
         localStorage.setItem('role', role);
-       
-      }),
+        
+        if(role==="Admin")
+        {
+          observable.next('Admin');
+          observable.complete();
+        } else if(role==='AppUser')
+        {
+          observable.next("AppUser");
+          observable.complete();
+        }
+      },
+      err => {
+        observable.next('greska')
+        observable.complete();
+      }
+      )
+    }
+    )
 
-      catchError(this.handleError<any>('login'))
-    );
+      //catchError(this.handleError<any>('login'))
+    
   }
 
   logout(): void {

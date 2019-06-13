@@ -123,7 +123,8 @@ namespace WebApp.Controllers
             db.Tickets.Add(timeticket);
             db.Complete();
 
-            return CreatedAtRoute("DefaultApi", new { id = timeticket.Id }, timeticket);
+            return CreatedAtRoute("DefaultApi", new { controller = "timeticket", id = timeticket.Id }, timeticket);
+           // return CreatedAtRoute("DefaultApi", new { id = timeticket.Id }, timeticket);
         }
 
         [HttpDelete]

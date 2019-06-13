@@ -55,6 +55,25 @@
 
                  </a>
             </div> 
+            <div *ngIf="show" class="col-sm-4">
+
+              <p   class="text-center"><strong>Linije</strong></p>
+               <a   routerLink="/lines" data-toggle="collapse">Linije
+               <img src="assets/images/busic.png" height="200px" width="200px" class="img-circle person" alt="Random Name">
+
+               </a>
+          </div> 
+          <div class="col-sm-4">
+
+            <p   class="text-center"><strong>Mreza linija</strong></p>
+             <a   routerLink="/userlines" data-toggle="collapse">Mreza linija
+             <img src="assets/images/busic.png" height="200px" width="200px" class="img-circle person" alt="Random Name">
+
+             </a>
+        </div> 
+
+
+          
             <button (click)="logout()" routeLink="/login">Logout</button>
 
 </div>

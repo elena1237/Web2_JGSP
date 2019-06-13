@@ -281,6 +281,10 @@
     <Compile Include="Migrations\201906121810284_pass.Designer.cs">
       <DependentUpon>201906121810284_pass.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906131441228_sara.cs" />
+    <Compile Include="Migrations\201906131441228_sara.Designer.cs">
+      <DependentUpon>201906131441228_sara.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -432,6 +436,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906121810284_pass.resx">
       <DependentUpon>201906121810284_pass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906131441228_sara.resx">
+      <DependentUpon>201906131441228_sara.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

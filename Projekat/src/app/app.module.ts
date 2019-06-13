@@ -24,6 +24,9 @@ import { PriceListUserComponent } from './price-list-user/price-list-user.compon
 import { AdminStationsComponent } from './admin-stations/admin-stations.component';
 import { MapComponent } from './map/map.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { AdminLinesComponent } from './admin-lines/admin-lines.component';
+import { GridLinesAdminComponent } from './grid-lines-admin/grid-lines-admin.component';
+import { GridLinesUserComponent } from './grid-lines-user/grid-lines-user.component';
 
 
 @NgModule({
@@ -43,6 +46,9 @@ import { RegistrationComponent } from './registration/registration.component';
     AdminStationsComponent,
     MapComponent,
     RegistrationComponent,
+    AdminLinesComponent,
+    GridLinesAdminComponent,
+    GridLinesUserComponent,
   ],
   imports: [
     BrowserModule,

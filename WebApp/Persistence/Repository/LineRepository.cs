@@ -13,5 +13,10 @@ namespace WebApp.Persistence.Repository
         {
         }
 
+        public new IEnumerable<Line> GetAll()
+        {
+            return context.Set<Line>().Include("Stations").ToList();
+        }
+
     }
 }

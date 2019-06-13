@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
+using Newtonsoft.Json;
 using WebApp.Models;
 using WebApp.Persistence.Repository;
 using WebApp.Persistence.UnitOfWork;
@@ -110,7 +111,7 @@ namespace WebApp.Controllers
         //    }
 
         //    return schedule;
-            
+
         //}
 
 
@@ -119,6 +120,8 @@ namespace WebApp.Controllers
 
 
         // GET: api/Lines
+        [Route("AllLines")]
+        
         public IEnumerable<Line> GetLines()
         {
             return db.Lines.GetAll();
@@ -174,7 +177,8 @@ namespace WebApp.Controllers
 
         // POST: api/Lines
         [ResponseType(typeof(Line))]
-        public IHttpActionResult PostLine(Line line)
+        [Route("InsertLine")]
+        public IHttpActionResult PostLine([FromBody]Line line)
         {
             if (!ModelState.IsValid)
             {
@@ -184,7 +188,8 @@ namespace WebApp.Controllers
             db.Lines.Add(line);
             db.Complete();
 
-            return CreatedAtRoute("DefaultApi", new { id = line.Id }, line);
+            return CreatedAtRoute("DefaultApi", new { controller = "line", id = line.Id }, line);
+            
         }
 
         // DELETE: api/Lines/5
