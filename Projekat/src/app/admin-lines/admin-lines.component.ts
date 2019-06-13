@@ -30,12 +30,18 @@ export class AdminLinesComponent implements OnInit {
   public markerInfos: MarkerInfo;
   public stationsArray: Station[] = [];
   public line: Line = new Line();
+  public lines2: Array<Line> = [];
 
+  public selectedLine: Line = new Line();
+  public typeOfLine: string;
+  public LineNumber: number;
 
   addLinesForm = this.fb.group({
     number: ['', Validators.required],
     typelines:[]
   });
+
+  
 
 
   TypeLine:Array<Object> = [
@@ -52,6 +58,10 @@ export class AdminLinesComponent implements OnInit {
         Object.assign(this.stations, data);
       });
       console.log(this.stations);
+
+     this.lineService.getAllLines().subscribe((data)=>{
+        Object.assign(this.lines2, data);
+      });
   }
 
   constructor(private ngZone: NgZone,private stationService:StationsService,private lineService: LineserviceService, private fb: FormBuilder){
@@ -82,15 +92,40 @@ export class AdminLinesComponent implements OnInit {
     });
 
     window.location.reload();
-    
   
+  }
+
+  updateForm = this.fb.group({
+   
+    LineNumber: ['', Validators.required],
+    TypeOfLine: ['', Validators.required],
+
+  });
+
+  public ChangeLine()
+  {
+    // this.selectedLine.LineNumber= this.updateForm.controls['LineNumber'];
+    this.lineService.updateLine(this.selectedLine).subscribe((data) => {
+   });
+   window.location.reload();
 
   }
 
+  public DeleteLine()
+  {
 
+    this.lineService.delete(this.selectedLine.Id).subscribe((data) => {
+      if (data) {
+        this.message = "Uspesno ste obrisali selektovanu liniju.";
+        this.selectedLine = null;
+      }
+      else {
+        this.message = "Greska prilikom brisanja zadate linije.";
+      }
+    });
+  }
+  }
 
-
-}
 
 
 

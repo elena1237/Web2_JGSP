@@ -4,7 +4,7 @@
 <!-- Kreiramo mapu -->
 <agm-map [latitude]="45.242268" [longitude]="19.842954" [zoom]="18">  
 
-  <agm-marker *ngFor="let station of stations" [latitude]="station.Coordinate.X" [longitude]="station.Coordinate.Y" [iconUrl]="imageUrl">
+  <agm-marker *ngFor="let station of stations" [latitude]="station.Coordinate.X" [longitude]="station.Coordinate.Y" >
 
     <!-- Svakom markeru dodajemo info-window (Nije obavezno!)-->
     <agm-info-window [latitude]="station.Coordinate.X" [longitude]="station.Coordinate.Y" >

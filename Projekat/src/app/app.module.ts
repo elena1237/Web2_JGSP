@@ -26,7 +26,7 @@ import { MapComponent } from './map/map.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { AdminLinesComponent } from './admin-lines/admin-lines.component';
 import { GridLinesAdminComponent } from './grid-lines-admin/grid-lines-admin.component';
-import { GridLinesUserComponent } from './grid-lines-user/grid-lines-user.component';
+
 
 
 @NgModule({
@@ -48,7 +48,7 @@ import { GridLinesUserComponent } from './grid-lines-user/grid-lines-user.compon
     RegistrationComponent,
     AdminLinesComponent,
     GridLinesAdminComponent,
-    GridLinesUserComponent,
+    
   ],
   imports: [
     BrowserModule,

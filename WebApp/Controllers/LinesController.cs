@@ -142,7 +142,8 @@ namespace WebApp.Controllers
 
         // PUT: api/Lines/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutLine(int id, Line line)
+        [Route("UpdateLine/{id}")]
+        public IHttpActionResult PutLine(int id,[FromBody] Line line)
         {
             if (!ModelState.IsValid)
             {
@@ -194,6 +195,7 @@ namespace WebApp.Controllers
 
         // DELETE: api/Lines/5
         [ResponseType(typeof(Line))]
+        [Route("DeleteLine")]
         public IHttpActionResult DeleteLine(int id)
         {
             Line line = db.Lines.Get(id);

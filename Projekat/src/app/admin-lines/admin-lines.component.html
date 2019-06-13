@@ -31,3 +31,44 @@
       </form>
       {{message}}
 </div>
+
+
+<div class="col-sm-6">
+
+    Odabir linije<br>
+    <select class="form-control" style="width: 20%;" [(ngModel)]="selectedLine">
+      <option *ngFor="let line of lines2" [ngValue]="line">
+        {{line.LineNumber}}
+      </option>
+    </select>
+    <br>
+    <button class="btn btn-secondary"  data-toggle="collapse">Dodaj liniju</button>
+    <br>
+    <br>
+    <button class="btn btn-secondary" data-toggle="collapse" href="#update">Izmeni liniju</button>
+    <br>
+    <br>
+    <button class="btn btn-secondary" data-toggle="collapse">Obrisi liniju</button>
+    <br>
+    <br>
+
+    <!-- <button class="btn btn-secondary" (click)="showLine()" [disabled]="selectedLine==null">Prikazi</button> -->
+    </div>
+   
+
+        <div id="update" class="collapse" >
+            <form [formGroup]="updateForm" (ngSubmit)="ChangeLine()">
+                <label>
+                    Line Id:
+                    <input mdInput type="text"  formControlName="LineNumber" [(ngModel)]="selectedLine.LineNumber">
+                  </label>
+          
+                  <label>
+                      Departure:
+                      <input mdInput type="text" class="form-control" formControlName="TypeOfLine" [(ngModel)]="selectedLine.TypeOfLine">
+                    </label>
+                 <button type="submit" >Update</button>
+                 <!-- placeholder="{{departure}}" -->
+              </form>
+            </div>
+

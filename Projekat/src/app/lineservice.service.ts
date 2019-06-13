@@ -24,4 +24,15 @@ export class LineserviceService {
    
     return this.client.get<Line[]>(this.url + '/AllLines');  
   }
+
+  public delete(id: number):Observable<Line>{
+    return this.client.delete<Line>(this.url + '/DeleteLine' + `/${id}`);
+}
+
+public updateLine(ticketType: Line): Observable<Line> {  
+  const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json'}) };  
+  return this.client.put<Line>('http://localhost:52295/Api/Line/UpdateLine/' +ticketType.Id,ticketType,  
+httpOptions);  
+
+}
 }
