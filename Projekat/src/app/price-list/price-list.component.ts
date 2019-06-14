@@ -119,36 +119,36 @@ export class PriceListComponent implements OnInit {
        }
 
        this.priceListService.getTicketById(ticketId).subscribe(data => {
-         this.ticket=data
-        
-        });
-       console.log(this.ticket.Id);
-  
+        this.ticket=data;
         this.ticket.Price = basePrice;
-
-       this.priceListService.updateTicketTypeById(this.ticket).subscribe((data) => {
-       });
-
-
-       this.priceListService.getPassengerById(pasId).subscribe(data => {this.passenger=data}); 
-
+        this.priceListService.updateTicketTypeById(this.ticket).subscribe((data) => {
+        });
        
-       this.passenger.Discount = discount;
-
-       this.priceListService.updatePassengerTypeById(this.passenger).subscribe((data) => {
        });
 
-       const d = new DatePipe('en-US').transform(this.Students.dob,'dd/MM/yyyy');
-       const d2 = new DatePipe('en-US').transform(this.Students.dob2,'dd/MM/yyyy')
+     
 
-       let price = basePrice*discount;
-      this.priceList = new PriceList(1, d,d2,pasId,price,ticketId,true);
-  
-       this.priceListService.createPriceList(this.priceList).subscribe(  
-         () => {  
-           
-         }  
-       );  
+
+      this.priceListService.getPassengerById(pasId).subscribe(data => {
+        this.passenger=data;
+        this.passenger.Discount = discount;
+        this.priceListService.updatePassengerTypeById(this.passenger).subscribe((data) => {
+        });
+      }); 
+
+    
+
+      const d = new DatePipe('en-US').transform(this.Students.dob,'dd/MM/yyyy');
+      const d2 = new DatePipe('en-US').transform(this.Students.dob2,'dd/MM/yyyy')
+
+      let price = basePrice*discount;
+     this.priceList = new PriceList(1, d,d2,pasId,price,ticketId,true);
+ 
+      this.priceListService.createPriceList(this.priceList).subscribe(  
+        () => {  
+          
+        }  
+      );  
      } 
     
 }
